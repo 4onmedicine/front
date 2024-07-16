@@ -11,8 +11,8 @@ const NavDiv = styled.div`
   display: flex;
   flex-direction: row;
   gap: 20px;
-  position: fixed;
-  top: 90px;
+  /* position: fixed; */
+  /* top: 90px; */
   width: 100%;
   height: 50px;
   background-color: #8c8c8c;

@@ -19,7 +19,6 @@ export default MainPage;
 const MainContainer = styled.div`
   margin: 0 auto;
   position: relative;
-  top: 150px;
   width: 1080px;
   height: fit-content;
 `;

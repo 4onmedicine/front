@@ -1,5 +1,6 @@
-import Root from "../pages/root/root";
+import Root from "../components/header/header";
 import MainPage from "../pages/main/main";
+import DetailPage from "../pages/Detail/detail";
 
 const router = [
   {
@@ -9,6 +10,10 @@ const router = [
       {
         path: "/",
         element: <MainPage />,
+      },
+      {
+        path: "/detail",
+        element: <DetailPage />,
       },
     ],
   },
