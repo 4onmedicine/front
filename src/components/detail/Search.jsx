@@ -6,25 +6,25 @@ import { fetchMedicine } from "../../query/useGetMedicine";
 
 export function Search() {
   const [query, setQuery] = useState("");
-  const [countries, setCountries] = useState([]);
+  const [medicines, setMedicines] = useState([]);
   const [searching, setSearching] = useState(false);
 
   useEffect(() => {
     if (query) {
       setSearching(true);
-      fetchMedicine(query).then((countries) => {
-        setCountries(countries);
+      fetchMedicine(query).then((medicines) => {
+        setMedicines(medicines);
         setSearching(false);
       });
     } else {
-      setCountries([]);
+      setMedicines([]);
     }
   }, [query]);
 
   return (
     <SearchContainer>
       <SearchBox value={query} onChange={(e) => setQuery(e.target.value)} />
-      <SearchResults countries={countries} searching={searching} />
+      {query && <SearchResults medicines={medicines} searching={searching} />}
     </SearchContainer>
   );
 }

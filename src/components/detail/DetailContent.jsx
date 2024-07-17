@@ -8,7 +8,10 @@ const DetailContent = () => {
   return (
     <DetailContentContainer>
       <Contents>
-        <ImgArea>{/* <img src={itemImage} alt="낱알 이미지" /> */}</ImgArea>
+        <ImgArea>
+          {" "}
+          <img src={itemImage} alt="낱알 이미지" />{" "}
+        </ImgArea>
         <TextArea>
           <MedicineTitle>{itemName}</MedicineTitle>
           <MedicineEfficacy>{efcyQesitm}</MedicineEfficacy>
@@ -43,7 +46,6 @@ const ImgArea = styled.div`
   margin-top: 15px;
   width: 64px;
   height: 64px;
-  background-color: blue;
 `;
 
 const TextArea = styled.div`

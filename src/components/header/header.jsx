@@ -14,15 +14,15 @@ const Header = () => {
   return (
     <HeaderContainer>
       <AdContainer>광고 컨테이너</AdContainer>
-      {location.pathname === "/" ? (
-        <Navbar />
-      ) : (
+      {location.pathname === "/detail" ? (
         <>
           <SearchContainer>
             <SearchInput />
           </SearchContainer>
           <Navbar />
         </>
+      ) : (
+        <Navbar />
       )}
       <Outlet />
     </HeaderContainer>

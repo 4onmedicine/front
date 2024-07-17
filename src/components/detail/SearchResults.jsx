@@ -1,17 +1,63 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const SearchResults = ({ countries, searching }) => {
+const SearchResults = ({ medicines, searching }) => {
+  const [focusedIndex, setFocusedIndex] = useState(0);
+  const navigate = useNavigate();
+  const resultsRef = useRef([]);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowDown") {
+        setFocusedIndex((prevIndex) =>
+          prevIndex === medicines.length - 1 ? 0 : prevIndex + 1
+        );
+      } else if (event.key === "ArrowUp") {
+        setFocusedIndex((prevIndex) =>
+          prevIndex === 0 ? medicines.length - 1 : prevIndex - 1
+        );
+      } else if (event.key === "Enter") {
+        navigate(`/country/${medicines[focusedIndex].code}`);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [focusedIndex, medicines, navigate]);
+
+  useEffect(() => {
+    resultsRef.current[focusedIndex]?.scrollIntoView({ block: "nearest" });
+  }, [focusedIndex]);
+
+  const handleMouseEnter = (index) => {
+    setFocusedIndex(index);
+  };
+
+  const handleMouseClick = (index) => {
+    navigate(`/country/${medicines[index].code}`);
+  };
+
   return (
     <SearchResultsContainer>
       {searching ? (
         <div>검색 중...</div>
-      ) : countries.length > 0 ? (
-        countries.map(({ code, en, ko }) => (
-          <li key={code}>
-            {ko} ({en})
-          </li>
-        ))
+      ) : medicines.length > 0 ? (
+        <ul>
+          {medicines.map(({ itemName }, index) => (
+            <MedicineLi
+              key={itemName}
+              ref={(el) => (resultsRef.current[index] = el)}
+              $isFocused={index === focusedIndex} // $로 시작하는 prop은 styled-components에서만 사용됨
+              onMouseEnter={() => handleMouseEnter(index)}
+              onClick={() => handleMouseClick(index)}
+            >
+              {itemName}
+            </MedicineLi>
+          ))}
+        </ul>
       ) : (
         <div>결과가 없습니다.</div>
       )}
@@ -32,4 +78,16 @@ const SearchResultsContainer = styled.div`
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   max-height: 400px;
   overflow-y: auto;
+`;
+
+const MedicineLi = styled.li.attrs((props) => ({
+  className: props.$isFocused ? "focused" : "",
+}))`
+  list-style-type: none;
+  padding: 10px;
+  background-color: ${(props) => (props.$isFocused ? "#e0e0e0" : "white")};
+  cursor: pointer;
+  &:hover {
+    background-color: #e0e0e0;
+  }
 `;
