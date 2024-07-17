@@ -10,5 +10,6 @@ export const detailDataState = atom({
     intrcQesitm: "",
     seQesitm: "",
     depositMethodQesitm: "",
+    itemImage: "",
   },
 });

@@ -5,18 +5,24 @@ import DetailNav from "../../components/detail/DetailNav";
 import { Outlet } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { detailDataState } from "../../atoms/atom";
+import DetailContent from "../../components/detail/DetailContent";
+import medicineImg from "../../assets/medicineImg.png";
 
 const DetailPage = () => {
   const setDetailData = useSetRecoilState(detailDataState);
   const dummyData = {
-    itemName: "제품명",
-    atpnQesitm: "이 약의 사용상 주의사항은 무엇입니까?", // 주의사항
-    efcyQesitm: "이 약의 효능은 무엇입니까?", // 효능
-    useMethodQesitm: "이 약은 어떻게 사용합니까?", // 사용법
+    itemName: "암포젤정(건조수산화알루미늄겔) ",
+    atpnQesitm:
+      "투석요법을 받고 있는 환자는 이 약을 복용하지 마십시오.이 약을 복용하기 전에 인산염 결핍, 신장애 환자, 신장병 경험자는 의사 또는 약사와 상의하십시오.장기연용을 하지 마십시오.", // 주의사항
+    efcyQesitm:
+      "이 약은 위.십이지장궤양, 위염, 위산과다의 제산작용 및 증상의 개선에 사용합니다.", // 효능
+    useMethodQesitm:
+      "성인은 1회 1~2정(300~600 mg), 1일 3회 식간에 복용합니다.연령, 증상에 따라 적절히 증감합니다.", // 사용법
     intrcQesitm:
-      "이 약을 사용하는 동안 주의해야 할 약 또는 음식은 무엇입니까?.", //상호작용
-    seQesitm: "이 약은 어떤 이상반응이 나타날 수 있습니까?", // 부작용
-    depositMethodQesitm: "이 약은 어떻게 보관해야 합니까?", // 보관 방법
+      "테트라사이클린계 항생물질을 함께 복용하지 마십시오.이 약의 흡착작용 또는 소화관내, 체액의 pH상승에 의해 함께 복용하는 약물의 흡수, 배설에 영향을 줄 수 있습니다.", //상호작용
+    seQesitm: "때때로 변비 드물게 구역, 구토 등이 나타날 수 있습니다.", // 부작용
+    depositMethodQesitm: "실온에서 보관하십시오.", // 보관 방법
+    itemImage: { medicineImg }, // 낱알 이미지
   };
   // 리코일로 전역 상태 업데이트
   useEffect(() => {
@@ -25,7 +31,9 @@ const DetailPage = () => {
 
   return (
     <DetailContainer>
-      <DetailMain>메인 컨텐츠</DetailMain>
+      <DetailMain>
+        <DetailContent />
+      </DetailMain>
       <DetailNavContainer>
         <DetailNav />
       </DetailNavContainer>
