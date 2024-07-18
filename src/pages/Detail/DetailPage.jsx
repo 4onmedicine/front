@@ -7,11 +7,13 @@ import { useSetRecoilState } from "recoil";
 import { detailDataState } from "../../atoms/atom";
 import DetailContent from "../../components/detail/DetailContent";
 import medicineImg from "../../assets/medicineImg.png";
+import { useParams } from "react-router-dom";
 
 const DetailPage = () => {
   const setDetailData = useSetRecoilState(detailDataState);
+  const { params } = useParams();
   const dummyData = {
-    itemName: "암포젤정(건조수산화알루미늄겔) ",
+    itemName: "암포젤정(건조수산화알루미늄겔)",
     atpnQesitm:
       "투석요법을 받고 있는 환자는 이 약을 복용하지 마십시오.이 약을 복용하기 전에 인산염 결핍, 신장애 환자, 신장병 경험자는 의사 또는 약사와 상의하십시오.장기연용을 하지 마십시오.", // 주의사항
     efcyQesitm:
