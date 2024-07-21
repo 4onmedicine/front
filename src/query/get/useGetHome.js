@@ -1,10 +1,24 @@
-import HomeApi from "../../apis/getHome";
+const HomeApi = {
+  getHome: async (query) => {
+    const response = await fetch(`http://localhost:8080/home?search=${query}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  },
+};
 
-const getHomeData = async (query) => {
+const useGetHome = async (query) => {
   try {
     await new Promise((r) => setTimeout(r, 2_000));
     const res = await HomeApi.getHome(query);
-    return res.data.filter((medicine) =>
+    console.log(res);
+    return res.filter((medicine) =>
       medicine.itemName.toLowerCase().includes(query.toLowerCase())
     );
   } catch (e) {
@@ -12,4 +26,4 @@ const getHomeData = async (query) => {
   }
 };
 
-export default getHomeData;
+export default useGetHome;

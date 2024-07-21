@@ -8,10 +8,12 @@ import { detailDataState } from "../../atoms/atom";
 import DetailContent from "../../components/detail/DetailContent";
 import medicineImg from "../../assets/medicineImg.png";
 import { useParams } from "react-router-dom";
+import useGetDetail from "../../query/get/useGetDetail";
 
 const DetailPage = () => {
   const setDetailData = useSetRecoilState(detailDataState);
   const { params } = useParams();
+  const MedicineData = useGetDetail(params);
   const dummyData = {
     itemName: "암포젤정(건조수산화알루미늄겔)",
     atpnQesitm:
@@ -28,8 +30,8 @@ const DetailPage = () => {
   };
   // 리코일로 전역 상태 업데이트
   useEffect(() => {
-    setDetailData(dummyData);
-  }, [setDetailData, dummyData]);
+    setDetailData(MedicineData);
+  }, [setDetailData, MedicineData]);
 
   return (
     <DetailContainer>

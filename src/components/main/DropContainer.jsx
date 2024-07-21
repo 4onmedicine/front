@@ -7,6 +7,7 @@ const DropContainer = () => {
   const [selectedOption, setSelectedOption] = useState("드롭다운 메뉴");
 
   const handleClickContainer = () => {
+    x;
     setDropdownView(!isDropdownView);
   };
 

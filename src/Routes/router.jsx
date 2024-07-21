@@ -8,18 +8,19 @@ import SideEffects from "../components/detailsub/SideEffects";
 import Storage from "../components/detailsub/Storage";
 import ErrorPage from "../pages/ErrorPage";
 import DetailPage from "../pages/Detail/DetailPage";
+import Header from "../components/header/Header";
 
 const router = [
   {
     path: "/",
-    element: <Root />,
+    element: <Header />,
     children: [
       {
         path: "/",
         element: <MainPage />,
       },
       {
-        path: "/detail/:id",
+        path: "/medicine/:itemSeq",
         element: <DetailPage />,
         children: [
           { path: "instruction", element: <Instruction /> },
@@ -33,7 +34,7 @@ const router = [
   },
   {
     path: "/",
-    element: <Root />,
+    element: <Header />,
     children: [
       {
         path: "/*",
