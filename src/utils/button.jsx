@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Button = ({ btHeight, text, onClick }) => {
   return (
@@ -13,7 +13,7 @@ export default Button;
 const DefaultButton = styled.button`
   border: none;
   width: fit-content;
-  height: ${(props) => props.btHeight || "25px"};
+  height: ${(props) => props.btHeight || '25px'};
   font-size: 14px;
   color: white;
   padding-left: 16px;

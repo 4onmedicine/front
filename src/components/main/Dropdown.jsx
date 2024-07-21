@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Dropdown = () => {
   return (
     <DropdownUl>
-      <DropdownLi onClick={() => console.log("약 드롭다운 클릭됨.")}>
+      <DropdownLi onClick={() => console.log('약 드롭다운 클릭됨.')}>
         약
       </DropdownLi>
       <DropdownLi>증상</DropdownLi>
@@ -25,6 +25,7 @@ const DropdownLi = styled.li`
   padding-top: 5px;
   padding-bottom: 5px;
   text-align: center;
+  border: 1px solid;
   &:hover {
     background-color: #5d5d5d;
   }

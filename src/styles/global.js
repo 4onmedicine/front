@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
     @font-face {
@@ -16,6 +16,12 @@ const GlobalStyles = createGlobalStyle`
     @font-face {
         font-family: 'NotoSansKR-Light';
         src: url('../assets/fonts/NotoSansKR-Light');
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'BitBit';
+        src: url('../assets/fonts/DNFBitBitv2.ttf');
         font-display: swap;
     }
 

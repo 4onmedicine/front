@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import Navbar from "../Navbar";
-import { Outlet, useLocation } from "react-router-dom";
-import SearchInput from "../detail/SearchInput";
+import { useEffect } from 'react';
+import styled from 'styled-components';
+import Navbar from '../Navbar';
+import { Outlet, useLocation } from 'react-router-dom';
+import SearchInput from '../detail/SearchInput';
 
 const Header = () => {
   const location = useLocation();
@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <AdContainer>광고 컨테이너</AdContainer>
-      {location.pathname === "/detail" ? (
+      {location.pathname === '/detail' ? (
         <>
           <SearchContainer>
             <SearchInput />

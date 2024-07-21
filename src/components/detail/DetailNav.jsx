@@ -1,42 +1,52 @@
-import React from "react";
-import styled from "styled-components";
-import Button from "../../utils/button";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import Button from '../../utils/button';
+import { useNavigate } from 'react-router-dom';
 
 const DetailNav = () => {
   const navigate = useNavigate();
+
+  // focus된 네비게이션 버튼에만 검은색, 나머지 버튼에는 #bababa 적용 필요
+
   return (
     <NavContainer>
-      <Button
-        text={"사용법"}
+      <IconDiv>가위아이콘</IconDiv>
+      <DashLine />
+      <NavBtn
         onClick={() => {
-          navigate("instruction");
+          navigate('instruction');
         }}
-      />
-      <Button
-        text={"주의사항"}
+      >
+        사용법
+      </NavBtn>
+      <NavBtn
         onClick={() => {
-          navigate("caution");
+          navigate('caution');
         }}
-      />
-      <Button
-        text={"상호작용"}
+      >
+        주의사항
+      </NavBtn>
+      <NavBtn
         onClick={() => {
-          navigate("interaction");
+          navigate('interaction');
         }}
-      />
-      <Button
-        text={"부작용"}
+      >
+        상호작용
+      </NavBtn>
+      <NavBtn
         onClick={() => {
-          navigate("sideeffects");
+          navigate('sideeffects');
         }}
-      />
-      <Button
-        text={"보관방법"}
+      >
+        부작용
+      </NavBtn>
+      <NavBtn
         onClick={() => {
-          navigate("storage");
+          navigate('storage');
         }}
-      />
+      >
+        보관방법
+      </NavBtn>
     </NavContainer>
   );
 };
@@ -45,8 +55,35 @@ export default DetailNav;
 
 const NavContainer = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 20px;
   margin: 0 auto;
-  width: 1080px;
+  width: 100%;
   height: 44px;
+  align-items: center;
+`;
+
+const DashLine = styled.div`
+  position: absolute;
+  z-index: 2;
+  border: 3px dashed gray;
+  width: 80%;
+  max-width: 880px;
+`;
+
+const NavBtn = styled.div`
+  z-index: 5;
+  position: relative;
+  font-family: BitBit;
+  background-color: white;
+  border: 4px solid white;
+  cursor: pointer;
+`;
+
+const IconDiv = styled.div`
+  position: relative;
+  z-index: 5;
+  background-color: white;
+  width: 50px;
+  height: 100%;
+  border: 1px solid;
 `;

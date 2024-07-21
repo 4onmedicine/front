@@ -1,25 +1,27 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import DropContainer from "../../components/main/DropContainer";
-import { MainSearch } from "../../components/main/MainSearch";
+//import React, { useState } from 'react';
+import styled from 'styled-components';
+import DropContainer from '../../components/main/DropContainer';
+import { MainSearch } from '../../components/main/MainSearch';
+import MainLogoSvg from '../../assets/MainLogo.svg';
 
 const MainPage = () => {
-  const [view, SetView] = useState(false);
+  //const [view, SetView] = useState(false);
   return (
     <MainContainer>
       <ContentsContainer>
-        <LogoDiv>웹 로고</LogoDiv>
+        <LogoDiv>
+          <MainLogo src={MainLogoSvg} />
+        </LogoDiv>
         <SearchContainer>
           <SearchDiv>
             <SearchCategoryArea>
-              <SearchCategoryTitle>카테고리</SearchCategoryTitle>
               <DropContainer />
             </SearchCategoryArea>
             <SearchInputArea>
-              <SearchTitle>검색</SearchTitle>
               <MainSearch />
             </SearchInputArea>
           </SearchDiv>
+          <SearchBtnDiv></SearchBtnDiv>
         </SearchContainer>
       </ContentsContainer>
     </MainContainer>
@@ -35,6 +37,13 @@ const MainContainer = styled.div`
   height: fit-content;
 `;
 
+const MainLogo = styled.img`
+  width: 30%;
+  height: auto;
+  object-fit: contain;
+  margin-top: 20px;
+`;
+
 const ContentsContainer = styled.div`
   position: absolute;
   display: flex;
@@ -42,17 +51,17 @@ const ContentsContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 1000px;
-  background-color: #747474;
+  background-color: white;
   gap: 30px;
   z-index: 1;
 `;
 
 const LogoDiv = styled.div`
   width: 100%;
-  height: 200px;
-  background-color: #bdbdbd;
+  background-color: white;
   box-sizing: border-box;
-  border: 1px solid gray;
+  display: flex;
+  justify-content: center;
 `;
 
 const SearchContainer = styled.div`
@@ -67,50 +76,64 @@ const SearchDiv = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  border-radius: 30px;
-  background-color: #d5d5d5;
-  padding: 10px 30px 10px 30px;
+  border-radius: 50px 0px 0px 50px;
+  border: 4px solid;
+  border-color: ${({ theme }) => theme.COLOR.GREEN};
+  background-color: white;
+  //padding: 10px 30px 10px 30px;
+`;
+
+const SearchBtnDiv = styled.div`
+  height: 100%;
+  border-radius: 0px 50px 50px 0px;
+  border: 4px solid;
+  border-color: ${({ theme }) => theme.COLOR.GREEN};
+  width: 90px;
+  background-color: ${({ theme }) => theme.COLOR.GREEN};
 `;
 
 const SearchCategoryArea = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
   width: 250px;
   height: 40px;
-  border-right: 2px solid black;
+  border-right: 2px solid GREEN;
 `;
 
-const SearchCategoryTitle = styled.div`
-  width: fit-content;
-  height: 14px;
-  font-size: 14px;
-  font-weight: bold;
-`;
+// const SearchCategoryTitle = styled.div`
+//   width: fit-content;
+//   height: 14px;
+//   font-size: 14px;
+//   font-weight: bold;
+// `;
 
 const SearchInputArea = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  width: 250px;
+  width: 100%;
   height: 40px;
   padding-left: 10px;
+  padding-right: 10px;
 `;
 
-const SearchTitle = styled.div`
-  width: fit-content;
-  height: 14px;
-  font-size: 14px;
-  font-weight: bold;
-`;
+// const SearchTitle = styled.div`
+//   width: fit-content;
+//   height: 14px;
+//   font-size: 14px;
+//   font-weight: bold;
+// `;
 
-const SearchInput = styled.input`
-  width: 100%;
-  height: 16px;
-  font-size: 16px;
-  border: none;
-  background-color: none;
-  &:focus {
-    outline: none;
-  }
-`;
+// const SearchInput = styled.input`
+//   width: 100%;
+//   height: 16px;
+//   font-size: 16px;
+//   border: none;
+//   background-color: none;
+//   &:focus {
+//     outline: none;
+//   }
+// `;

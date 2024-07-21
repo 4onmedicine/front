@@ -1,6 +1,6 @@
-import { useState } from "react";
-import Dropdown from "./Dropdown";
-import styled from "styled-components";
+import { useState } from 'react';
+import Dropdown from './Dropdown';
+import styled from 'styled-components';
 
 const DropContainer = () => {
   const [isDropdownView, setDropdownView] = useState(false);
@@ -20,7 +20,7 @@ const DropContainer = () => {
       <DropdownLabel onClick={handleClickContainer}>
         <DropdownButton>
           드롭다운 메뉴&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp;&nbsp;&nbsp;{isDropdownView ? "▲" : "▼"}
+          &nbsp;&nbsp;&nbsp;{isDropdownView ? '▲' : '▼'}
         </DropdownButton>
       </DropdownLabel>
       {isDropdownView && <Dropdown />}
@@ -43,7 +43,7 @@ const DropdownLabel = styled.label`
 const DropdownButton = styled.button`
   box-sizing: border-box;
   border: none;
-  background-color: none;
+  background-color: white;
   padding: 0px;
   width: 150px;
   text-align: start;

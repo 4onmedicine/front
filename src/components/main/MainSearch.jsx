@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import MainSearchResults from "./MainSearchResults";
-import MainSearchBox from "./MainSearchBox";
-import getHomeData from "../../query/get/useGetHome";
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import MainSearchResults from './MainSearchResults';
+import MainSearchBox from './MainSearchBox';
+import getHomeData from '../../query/get/useGetHome';
 
 export function MainSearch() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   const [medicines, setMedicines] = useState([]);
   const [searching, setSearching] = useState(false);
 
@@ -33,5 +33,6 @@ export function MainSearch() {
 
 const SearchContainer = styled.div`
   position: relative;
-  width: 300px;
+  width: 100%;
+  //width: 300px;
 `;
