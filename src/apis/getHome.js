@@ -3,7 +3,7 @@ import axiosInstance from "./@core";
 const HomePath = "/home";
 
 const HomeApi = {
-  getHome: () => {
+  getHome: (query) => {
     return axiosInstance.get(`${HomePath}?search=${query}`);
   },
 };

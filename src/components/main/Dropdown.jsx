@@ -1,14 +1,17 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
-const Dropdown = () => {
+const Dropdown = ({ onSelect }) => {
   return (
     <DropdownUl>
-      <DropdownLi onClick={() => console.log("약 드롭다운 클릭됨.")}>
-        약
-      </DropdownLi>
-      <DropdownLi>증상</DropdownLi>
+      <DropdownLi onClick={() => onSelect("약")}>약</DropdownLi>
+      <DropdownLi onClick={() => onSelect("증상")}>증상</DropdownLi>
     </DropdownUl>
   );
+};
+
+Dropdown.propTypes = {
+  onSelect: PropTypes.func.isRequired,
 };
 
 export default Dropdown;

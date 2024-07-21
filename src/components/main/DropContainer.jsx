@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const DropContainer = () => {
   const [isDropdownView, setDropdownView] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("드롭다운 메뉴");
 
   const handleClickContainer = () => {
     setDropdownView(!isDropdownView);
@@ -15,15 +16,20 @@ const DropContainer = () => {
     }, 200);
   };
 
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+    setDropdownView(false);
+  };
+
   return (
     <Container onBlur={handleBlurContainer}>
       <DropdownLabel onClick={handleClickContainer}>
         <DropdownButton>
-          드롭다운 메뉴&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+          {selectedOption} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
           &nbsp;&nbsp;&nbsp;{isDropdownView ? "▲" : "▼"}
         </DropdownButton>
       </DropdownLabel>
-      {isDropdownView && <Dropdown />}
+      {isDropdownView && <Dropdown onSelect={handleOptionSelect} />}
     </Container>
   );
 };

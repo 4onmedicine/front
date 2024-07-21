@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const MainSearchResults = ({ medicines, searching }) => {
+const MainSearchResults = ({ medicines = [], searching }) => {
   const [focusedIndex, setFocusedIndex] = useState(0);
   const navigate = useNavigate();
   const resultsRef = useRef([]);
