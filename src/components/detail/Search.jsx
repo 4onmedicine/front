@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { SearchBox } from "./SearchBox";
 import SearchResults from "./SearchResults";
-import { fetchMedicine } from "../../query/useGetMedicine";
 
 export function Search() {
   const [query, setQuery] = useState("");

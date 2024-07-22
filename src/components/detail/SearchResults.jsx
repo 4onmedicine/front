@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const SearchResults = ({ medicines, searching }) => {
+const SearchResults = ({ medicines = [], searching }) => {
   const [focusedIndex, setFocusedIndex] = useState(0);
   const navigate = useNavigate();
   const resultsRef = useRef([]);
@@ -18,7 +18,7 @@ const SearchResults = ({ medicines, searching }) => {
           prevIndex === 0 ? medicines.length - 1 : prevIndex - 1
         );
       } else if (event.key === "Enter") {
-        navigate(`/country/${medicines[focusedIndex].code}`);
+        navigate(`/medicine/${medicines[focusedIndex].code}`);
       }
     };
 
@@ -37,7 +37,7 @@ const SearchResults = ({ medicines, searching }) => {
   };
 
   const handleMouseClick = (index) => {
-    navigate(`/country/${medicines[index].code}`);
+    navigate(`/medicine/${medicines[index].code}`);
   };
 
   return (
@@ -50,7 +50,7 @@ const SearchResults = ({ medicines, searching }) => {
             <MedicineLi
               key={itemName}
               ref={(el) => (resultsRef.current[index] = el)}
-              $isFocused={index === focusedIndex} // $로 시작하는 prop은 styled-components에서만 사용됨
+              $isFocused={index === focusedIndex}
               onMouseEnter={() => handleMouseEnter(index)}
               onClick={() => handleMouseClick(index)}
             >

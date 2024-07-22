@@ -1,18 +1,20 @@
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import MainSearchResults from './MainSearchResults';
-import MainSearchBox from './MainSearchBox';
-import getHomeData from '../../query/get/useGetHome';
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import MainSearchResults from "./MainSearchResults";
+import MainSearchBox from "./MainSearchBox";
+import getHomeData from "../../query/get/useGetHome";
+import useDebouncedState from "./useDebouncedState";
 
 export function MainSearch() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
+  const debouncedQuery = useDebouncedState(query, 1_000);
   const [medicines, setMedicines] = useState([]);
   const [searching, setSearching] = useState(false);
 
   useEffect(() => {
     if (query) {
       setSearching(true);
-      getHomeData(query).then((medicines) => {
+      getHomeData(debouncedQuery).then((medicines) => {
         setMedicines(medicines);
         setSearching(false);
       });
