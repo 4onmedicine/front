@@ -2,21 +2,22 @@ import { useState } from "react";
 import Dropdown from "./Dropdown";
 import styled from "styled-components";
 
-const DropContainer = () => {
+const DropContainer = ({ selectedOption, setSelectedOption }) => {
   const [isDropdownView, setDropdownView] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("드롭다운 메뉴");
 
   const handleClickContainer = () => {
-    x;
+    // 컨테이너 누르면 Dropdown 보이게 설정
     setDropdownView(!isDropdownView);
   };
 
+  // onBlur: 포커스 빠져나갔을 때 이벤트
   const handleBlurContainer = () => {
     setTimeout(() => {
       setDropdownView(false);
     }, 200);
   };
 
+  // Dropdown 옵션 선택 이벤트
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
     setDropdownView(false);
@@ -26,8 +27,8 @@ const DropContainer = () => {
     <Container onBlur={handleBlurContainer}>
       <DropdownLabel onClick={handleClickContainer}>
         <DropdownButton>
-          드롭다운 메뉴&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
-          &nbsp;&nbsp;&nbsp;{isDropdownView ? "▲" : "▼"}
+          {selectedOption} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+          {isDropdownView ? "▲" : "▼"}
         </DropdownButton>
       </DropdownLabel>
       {isDropdownView && <Dropdown onSelect={handleOptionSelect} />}
@@ -51,7 +52,7 @@ const DropdownButton = styled.button`
   box-sizing: border-box;
   border: none;
   background-color: white;
-  padding: 0px;
+  padding-left: 10px;
   width: 150px;
   text-align: start;
 `;

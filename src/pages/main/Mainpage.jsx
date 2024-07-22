@@ -1,11 +1,12 @@
 //import React, { useState } from 'react';
-import styled from 'styled-components';
-import DropContainer from '../../components/main/DropContainer';
-import { MainSearch } from '../../components/main/MainSearch';
-import MainLogoSvg from '../../assets/MainLogo.svg';
+import styled from "styled-components";
+import DropContainer from "../../components/main/DropContainer";
+import { MainSearch } from "../../components/main/MainSearch";
+import MainLogoSvg from "../../assets/MainLogo.svg";
+import { useState } from "react";
 
 const MainPage = () => {
-  //const [view, SetView] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("드롭다운 메뉴");
   return (
     <MainContainer>
       <ContentsContainer>
@@ -15,10 +16,13 @@ const MainPage = () => {
         <SearchContainer>
           <SearchDiv>
             <SearchCategoryArea>
-              <DropContainer />
+              <DropContainer
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+              />
             </SearchCategoryArea>
             <SearchInputArea>
-              <MainSearch />
+              <MainSearch selectedOption={selectedOption} />
             </SearchInputArea>
           </SearchDiv>
           <SearchBtnDiv></SearchBtnDiv>
@@ -103,13 +107,6 @@ const SearchCategoryArea = styled.div`
   border-right: 2px solid GREEN;
 `;
 
-// const SearchCategoryTitle = styled.div`
-//   width: fit-content;
-//   height: 14px;
-//   font-size: 14px;
-//   font-weight: bold;
-// `;
-
 const SearchInputArea = styled.div`
   display: flex;
   flex-direction: column;
@@ -119,21 +116,3 @@ const SearchInputArea = styled.div`
   padding-left: 10px;
   padding-right: 10px;
 `;
-
-// const SearchTitle = styled.div`
-//   width: fit-content;
-//   height: 14px;
-//   font-size: 14px;
-//   font-weight: bold;
-// `;
-
-// const SearchInput = styled.input`
-//   width: 100%;
-//   height: 16px;
-//   font-size: 16px;
-//   border: none;
-//   background-color: none;
-//   &:focus {
-//     outline: none;
-//   }
-// `;

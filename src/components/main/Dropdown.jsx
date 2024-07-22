@@ -19,6 +19,7 @@ export default Dropdown;
 const DropdownUl = styled.ul`
   position: relative;
   margin-top: 25px;
+  margin-left: 10px;
 `;
 
 const DropdownLi = styled.li`
