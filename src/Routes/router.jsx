@@ -20,7 +20,7 @@ const router = [
         element: <MainPage />,
       },
       {
-        path: "/medicine/:itemSeq",
+        path: "/medicine/:id",
         element: <DetailPage />,
         children: [
           { path: "instruction", element: <Instruction /> },

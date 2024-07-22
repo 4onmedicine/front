@@ -18,7 +18,7 @@ const MainSearchResults = ({ medicines = [], searching }) => {
           prevIndex === 0 ? medicines.length - 1 : prevIndex - 1
         );
       } else if (event.key === "Enter") {
-        navigate(`/country/${medicines[focusedIndex].code}`);
+        navigate(`/medicine/${medicines[focusedIndex].itemSeq}`);
       }
     };
 
