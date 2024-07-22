@@ -1,6 +1,6 @@
 import React from "react";
 import Root from "../components/header/Header";
-import MainPage from "../pages/main/main";
+import MainPage from "../pages/main/Mainpage";
 import Instruction from "../components/detailsub/Instruction";
 import Caution from "../components/detailsub/Caution";
 import Interaction from "../components/detailsub/Interaction";
