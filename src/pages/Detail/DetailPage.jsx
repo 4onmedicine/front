@@ -20,7 +20,7 @@ const DetailPage = () => {
   }, [FetchedData, setDetailData]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>로딩중이야...</div>;
   }
 
   if (error) {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import MainSearchResults from "./MainSearchResults";
 import MainSearchBox from "./MainSearchBox";
@@ -6,6 +6,7 @@ import getHomeData from "../../query/get/useGetHome";
 import useDebouncedState from "./useDebouncedState";
 
 export function MainSearch({ selectedOption }) {
+  const ref = useRef();
   const [query, setQuery] = useState("");
   // const debouncedQuery = useDebouncedState(query, 1_000);
   const [medicines, setMedicines] = useState([]);
@@ -25,7 +26,11 @@ export function MainSearch({ selectedOption }) {
 
   return (
     <SearchContainer>
-      <MainSearchBox value={query} onChange={(e) => setQuery(e.target.value)} />
+      <MainSearchBox
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        selectedOption={selectedOption}
+      />
       {query && (
         <MainSearchResults medicines={medicines} searching={searching} />
       )}
