@@ -1,4 +1,3 @@
-//import React, { useState } from 'react';
 import styled from "styled-components";
 import DropContainer from "../../components/main/DropContainer";
 import { MainSearch } from "../../components/main/MainSearch";
@@ -6,6 +5,7 @@ import MainLogoSvg from "../../assets/MainLogo.svg";
 import { useState } from "react";
 
 const MainPage = () => {
+  const [selectedOption, setSelectedOption] = useState("드롭다운 메뉴");
   const [selectedOption, setSelectedOption] = useState("드롭다운 메뉴");
   return (
     <MainContainer>

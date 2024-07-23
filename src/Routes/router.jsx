@@ -7,6 +7,7 @@ import SideEffects from "../components/detailsub/SideEffects";
 import Storage from "../components/detailsub/Storage";
 import ErrorPage from "../pages/ErrorPage";
 import DetailPage from "../pages/Detail/DetailPage";
+import Header from "../components/header/header";
 
 const router = [
   {

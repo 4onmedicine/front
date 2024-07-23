@@ -13,6 +13,9 @@ export function MainSearch({ selectedOption }) {
   const [searching, setSearching] = useState(false);
 
   useEffect(() => {
+    if (selectedOption === "드롭다운 메뉴") {
+      console.log("먼저 선택해주세요.");
+    }
     if (query) {
       setSearching(true);
       getHomeData(query, selectedOption).then((medicines) => {
