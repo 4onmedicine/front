@@ -13,4 +13,7 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    outDir: "build", // 빌드 결과물이 저장될 디렉토리 설정
+  },
 });

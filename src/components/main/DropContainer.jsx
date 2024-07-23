@@ -2,9 +2,8 @@ import { useState } from "react";
 import Dropdown from "./Dropdown";
 import styled from "styled-components";
 
-const DropContainer = () => {
+const DropContainer = ({ selectedOption, setSelectedOption }) => {
   const [isDropdownView, setDropdownView] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("드롭다운 메뉴");
 
   const handleClickContainer = () => {
     x;

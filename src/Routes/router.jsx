@@ -1,5 +1,4 @@
 import React from "react";
-import Root from "../components/header/Header";
 import MainPage from "../pages/main/Mainpage";
 import Instruction from "../components/detailsub/Instruction";
 import Caution from "../components/detailsub/Caution";
@@ -8,7 +7,7 @@ import SideEffects from "../components/detailsub/SideEffects";
 import Storage from "../components/detailsub/Storage";
 import ErrorPage from "../pages/ErrorPage";
 import DetailPage from "../pages/Detail/DetailPage";
-import Header from "../components/header/Header";
+import Header from "../components/header/header";
 
 const router = [
   {

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import DropContainer from "../../components/main/DropContainer";
 import { MainSearch } from "../../components/main/MainSearch";
+import { useState } from "react";
 
 const MainPage = () => {
-  const [view, SetView] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("드롭다운 메뉴");
   return (
     <MainContainer>
       <ContentsContainer>
@@ -13,11 +13,14 @@ const MainPage = () => {
           <SearchDiv>
             <SearchCategoryArea>
               <SearchCategoryTitle>카테고리</SearchCategoryTitle>
-              <DropContainer />
+              <DropContainer
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+              />
             </SearchCategoryArea>
             <SearchInputArea>
               <SearchTitle>검색</SearchTitle>
-              <MainSearch />
+              <MainSearch selectedOption={selectedOption} />
             </SearchInputArea>
           </SearchDiv>
         </SearchContainer>
