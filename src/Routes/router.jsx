@@ -1,5 +1,4 @@
 import MainPage from "../pages/main/Mainpage";
-import Header from "../components/header/header";
 import Instruction from "../components/detailsub/Instruction";
 import Caution from "../components/detailsub/Caution";
 import Interaction from "../components/detailsub/Interaction";
@@ -8,6 +7,7 @@ import Storage from "../components/detailsub/Storage";
 import ErrorPage from "../pages/ErrorPage";
 import DetailPage from "../pages/Detail/DetailPage";
 import Header from "../components/header/header";
+import Loading from "../components/Loading";
 
 const router = [
   {
@@ -28,6 +28,11 @@ const router = [
           { path: "sideeffects", element: <SideEffects /> },
           { path: "storage", element: <Storage /> },
         ],
+      },
+      // 임지 로딩 테스트
+      {
+        path: "/loading",
+        element: <Loading />,
       },
     ],
   },

@@ -50,7 +50,7 @@ const DetailContainer = styled.div`
   ${FlexColumnCSS};
   position: relative;
   width: 100%;
-  height: fit-content;
+
   background-color: #bdbdbd;
   align-items: center;
   padding-top: 50px;

@@ -1,9 +1,7 @@
-import React from 'react';
-import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
-import { detailDataState } from '../../atoms/atom';
-
-// 이미지 경로에 오류가 생겼는지 수동으로 src 설정해도 계속 안 불러와져서 이쪽 레이아웃은 일단 그냥 냅뒀습니다. 빠른 시일 내로 수정해서 다시 올릴게요.
+import React from "react";
+import { useRecoilValue } from "recoil";
+import styled from "styled-components";
+import { detailDataState } from "../../atoms/atom";
 
 const DetailContent = () => {
   const { itemImage, itemName, efcyQesitm } = useRecoilValue(detailDataState);
@@ -11,7 +9,7 @@ const DetailContent = () => {
     <DetailContentContainer>
       <Contents>
         <ImgArea>
-          <PillImage src='../../assets/medicineImg.png' alt='알약 이미지' />
+          <PillImage src={itemImage} alt="알약 이미지" />
         </ImgArea>
         <TextArea>
           <MedicineTitle>{itemName}</MedicineTitle>
