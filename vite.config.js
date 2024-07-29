@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 // API 서버 주소를 환경 변수에서 가져옴
-const apiUrl = process.env.VITE_API_URL || 'http://localhost:8080';
+const apiUrl = process.env.VITE_BACKEND_URL || 'http://localhost:8080';
 
 export default defineConfig({
   plugins: [react()],
