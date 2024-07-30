@@ -112,12 +112,12 @@ const ChatContentArea = styled.div`
 const ChatMessage = styled.div`
   padding: 5px;
   margin-bottom: 5px;
+  border-radius: 5px;
   border-bottom: 1px solid #ddd;
   word-wrap: break-word;
-  border: 2px solid black;
   width: 250px;
   align-self: ${(props) => (props.isUser ? "flex-end" : "flex-start")};
-  background-color: ${(props) => (props.isUser ? "#dcf8c6" : "#fff")};
+  background-color: ${(props) => (props.isUser ? "#dcf8c6" : "#e0ffff	")};
 `;
 
 const InputArea = styled.div`
