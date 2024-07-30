@@ -28,6 +28,16 @@ const Navbar = () => {
         </NavButton>
         <NavCursorIcon src={NavCursorSvg} />
       </NavButtonWrapper>
+      <NavButtonWrapper>
+        <NavButton
+          onClick={() => {
+            navigate('/prescription');
+          }}
+        >
+          처방전 업로드
+        </NavButton>
+        <NavCursorIcon src={NavCursorSvg} />
+      </NavButtonWrapper>
     </NavDiv>
   );
 };
