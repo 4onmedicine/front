@@ -1,8 +1,9 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import DropContainer from "../../components/main/DropContainer";
 import { MainSearch } from "../../components/main/MainSearch";
 import MainLogoSvg from "../../assets/MainLogo.svg";
-import { useState } from "react";
+import ChatAreaComponent from "../../components/main/ChatAreaComponent"; // 경로는 실제 파일 위치에 맞게 조정
 
 const MainPage = () => {
   const [selectedOption, setSelectedOption] = useState("카테고리");
@@ -28,7 +29,7 @@ const MainPage = () => {
         </SearchContainer>
         <SubContentsArea>
           <PrescriptionArea></PrescriptionArea>
-          <ChatArea></ChatArea>
+          <ChatAreaComponent /> {/* 새로운 ChatAreaComponent 사용 */}
         </SubContentsArea>
       </ContentsContainer>
     </MainContainer>
@@ -88,7 +89,6 @@ const SearchDiv = styled.div`
   border: 4px solid;
   border-color: ${({ theme }) => theme.COLOR.GREEN};
   background-color: white;
-  //padding: 10px 30px 10px 30px;
 `;
 
 const SearchBtnDiv = styled.div`
