@@ -27,8 +27,8 @@ const DropContainer = ({ selectedOption, setSelectedOption }) => {
     <Container onBlur={handleBlurContainer}>
       <DropdownLabel onClick={handleClickContainer}>
         <DropdownButton>
-          {selectedOption} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-          {isDropdownView ? "▲" : "▼"}
+          <MenuSpan>{selectedOption}</MenuSpan>
+          <ArrowSpan>{isDropdownView ? "▲" : "▼"}</ArrowSpan>
         </DropdownButton>
       </DropdownLabel>
       {isDropdownView && <Dropdown onSelect={handleOptionSelect} />}
@@ -40,19 +40,34 @@ export default DropContainer;
 
 const Container = styled.div`
   box-sizing: border-box;
-  height: 15px;
+  height: 25px;
+  /* display: flex;
+  align-items: center; */
 `;
 
 const DropdownLabel = styled.label`
   box-sizing: border-box;
   border: none;
+  display: flex;
+  align-items: center;
 `;
 
 const DropdownButton = styled.button`
   box-sizing: border-box;
+  display: flex;
   border: none;
-  background-color: white;
   padding-left: 10px;
   width: 150px;
-  text-align: start;
+  text-align: center;
+  font-size: medium;
+  padding: 5px 5px 5px 10px;
+  align-items: center;
+  background-color: white;
 `;
+
+const MenuSpan = styled.span`
+  margin-right: auto;
+  font-family: gmarket-medium;
+`;
+
+const ArrowSpan = styled.span``;

@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import DropContainer from '../../components/main/DropContainer';
-import { MainSearch } from '../../components/main/MainSearch';
-import MainLogoSvg from '../../assets/MainLogo.svg';
-import { useState } from 'react';
+import styled from "styled-components";
+import DropContainer from "../../components/main/DropContainer";
+import { MainSearch } from "../../components/main/MainSearch";
+import MainLogoSvg from "../../assets/MainLogo.svg";
+import { useState } from "react";
 
 const MainPage = () => {
-  const [selectedOption, setSelectedOption] = useState('드롭다운 메뉴');
+  const [selectedOption, setSelectedOption] = useState("드롭다운 메뉴");
   return (
     <MainContainer>
       <ContentsContainer>
@@ -78,7 +78,9 @@ const SearchDiv = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+
   border-radius: 50px 0px 0px 50px;
+
   border: 4px solid;
   border-color: ${({ theme }) => theme.COLOR.GREEN};
   background-color: white;

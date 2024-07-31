@@ -144,6 +144,8 @@ const InputArea = styled.div`
 
 const InputTextarea = styled.textarea`
   border: none;
+  font-family: "gmarket-medium";
+  font-size: 18px;
   width: 690px;
   max-height: 90px; /* 최대 높이를 5줄로 제한 (약 100px) */
   /* overflow-y: auto;  */

@@ -47,6 +47,7 @@ const Input = styled.input`
   }
   &:disabled {
     cursor: not-allowed;
+    background-color: white;
   }
 `;
 
