@@ -35,13 +35,14 @@ const ChatPage = () => {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
+      // 엔터키 기본 동작인 줄바꿈을 방지
       e.preventDefault();
       if (!isLoading) {
         onSubmit();
       }
     }
   };
-
+  // messages가 업데이트 될때마다 chatContentRef의 가장 아래로 스크롤 유지
   useEffect(() => {
     if (chatContentRef.current && inputAreaRef.current) {
       chatContentRef.current.scrollTop = chatContentRef.current.scrollHeight;
@@ -52,6 +53,7 @@ const ChatPage = () => {
     <ChatContainer>
       <ChatArea>
         <ChatContentArea ref={chatContentRef}>
+          <ChatInfoDiv>채팅 기능 설명 부분</ChatInfoDiv>
           {messages.map((message, index) => (
             <ChatMessage key={index} isUser={message.type === "user"}>
               {message.text}
@@ -99,7 +101,7 @@ const ChatArea = styled.div`
 const ChatContentArea = styled.div`
   border: 2px solid black;
   width: 700px;
-  flex-grow: 1; /* 공간을 채우도록 설정 */
+  flex-grow: 1;
   overflow-y: auto; /* 내용이 넘칠 경우에만 스크롤 생성 */
   padding: 10px;
   box-sizing: border-box;
@@ -144,14 +146,24 @@ const InputTextarea = styled.textarea`
   border: none;
   width: 690px;
   max-height: 90px; /* 최대 높이를 5줄로 제한 (약 100px) */
-  overflow-y: auto; /* 내용이 넘칠 경우 스크롤 생성 */
+  /* overflow-y: auto;  */
   resize: none; /* 사용자가 크기를 조절할 수 없도록 설정 */
   background-color: #2cad66;
   outline: none; /* 포커스 시 테두리 제거 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const InputSubmitBtn = styled.button`
   width: 30px;
   height: 30px;
   align-self: flex-end;
+`;
+
+const ChatInfoDiv = styled.div`
+  width: 100%;
+  height: 200px;
+  border: 2px solid black;
+  flex-shrink: 0;
 `;
