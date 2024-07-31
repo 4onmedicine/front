@@ -26,6 +26,9 @@ const MainPage = () => {
           </SearchDiv>
           <SearchBtnDiv></SearchBtnDiv>
         </SearchContainer>
+        <SubContentsArea>
+          <PrescriptionArea />
+        </SubContentsArea>
       </ContentsContainer>
     </MainContainer>
   );
@@ -56,6 +59,7 @@ export const ContentsContainer = styled.div`
   background-color: white;
   gap: 30px;
   z-index: 1;
+  background-color: wheat;
 `;
 
 export const LogoDiv = styled.div`
@@ -115,4 +119,17 @@ const SearchInputArea = styled.div`
   height: 40px;
   padding-left: 10px;
   padding-right: 10px;
+`;
+
+const SubContentsArea = styled.div`
+  width: 100%;
+  height: 800px;
+  border: 2px solid black;
+  display: flex;
+`;
+
+const PrescriptionArea = styled.div`
+  width: 300px;
+  height: 100%;
+  border-right: 2px solid black;
 `;

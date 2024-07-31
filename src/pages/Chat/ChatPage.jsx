@@ -117,8 +117,9 @@ const ChatMessage = styled.div`
   border-radius: 5px;
   border-bottom: 1px solid #ddd;
   word-wrap: break-word;
-  width: 250px;
-  align-self: ${(props) => (props.isUser ? "flex-end" : "flex-start")};
+  width: 300px;
+  align-self: flex-start;
+  /* align-self: ${(props) => (props.isUser ? "flex-end" : "flex-start")}; */
   background-color: ${(props) => (props.isUser ? "#dcf8c6" : "#e0ffff	")};
 `;
 
