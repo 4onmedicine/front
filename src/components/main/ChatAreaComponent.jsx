@@ -102,7 +102,7 @@ const ChatArea = styled.div`
 `;
 
 const ChatContentArea = styled.div`
-  border: 4px dashed #2cad66;
+  /* border: 4px dashed #2cad66; */
   border-radius: 20px;
   width: 700px;
   flex-grow: 1;
@@ -123,7 +123,7 @@ const ChatMessage = styled.div`
   word-wrap: break-word;
   width: 300px;
   align-self: flex-start;
-  background-color: ${(props) => (props.isUser ? "#dcf8c6" : "#e0ffff")};
+  background-color: ${(props) => (props.isUser ? "#e6e6e9" : "#f4f4f6")};
 `;
 
 const InputArea = styled.div`
@@ -168,6 +168,6 @@ const ChatInfoDiv = styled.div`
 `;
 
 const ChatTitle = styled.div`
-  font-size: 40px;
-  font-family: "gmarket-medium";
+  font-size: 25px;
+  font-family: monospace;
 `;

@@ -56,7 +56,7 @@ export const ContentsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 1000px;
+  height: 1050px;
   background-color: white;
   gap: 30px;
   z-index: 1;
