@@ -28,7 +28,6 @@ const MainPage = () => {
           <SearchBtnDiv></SearchBtnDiv>
         </SearchContainer>
         <SubContentsArea>
-          <PrescriptionArea></PrescriptionArea>
           <ChatAreaComponent /> {/* 새로운 ChatAreaComponent 사용 */}
         </SubContentsArea>
       </ContentsContainer>
@@ -124,14 +123,13 @@ const SearchInputArea = styled.div`
 const SubContentsArea = styled.div`
   width: 100%;
   height: 800px;
-  border: 2px solid black;
   display: flex;
 `;
 
 const PrescriptionArea = styled.div`
   width: 300px;
   height: 100%;
-  border-right: 2px solid black;
+  /* border-right: 2px solid black; */
 `;
 
 const ChatArea = styled.div`

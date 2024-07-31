@@ -53,8 +53,8 @@ const ChatAreaComponent = () => {
   return (
     <ChatContainer>
       <ChatArea>
+        <ChatTitle>채팅방</ChatTitle>
         <ChatContentArea ref={chatContentRef}>
-          <ChatInfoDiv>채팅 기능 설명 부분</ChatInfoDiv>
           {messages.map((message, index) => (
             <ChatMessage key={index} isUser={message.type === "user"}>
               {message.text}
@@ -83,23 +83,27 @@ const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1080px;
+  width: 800px;
   margin: 0 auto;
-  background-color: #8fbb99;
+  background-color: white;
 `;
 
 const ChatArea = styled.div`
   position: relative;
-  width: 800px;
+  width: 100%;
   height: calc(100vh - 70px); /* 전체 높이에서 적절한 값을 뺍니다 */
-  background-color: #8fbb99;
+  background-color: #dcf8c6;
+  /* border: 4px solid #2cad66; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 20px;
+  padding-top: 4px;
 `;
 
 const ChatContentArea = styled.div`
-  border: 2px solid black;
+  border: 4px dashed #2cad66;
+  border-radius: 20px;
   width: 700px;
   flex-grow: 1;
   overflow-y: auto; /* 내용이 넘칠 경우에만 스크롤 생성 */
@@ -108,7 +112,7 @@ const ChatContentArea = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: white;
+  background-color: #dcf8c6;
 `;
 
 const ChatMessage = styled.div`
@@ -161,4 +165,9 @@ const ChatInfoDiv = styled.div`
   height: 200px;
   border: 2px solid black;
   flex-shrink: 0;
+`;
+
+const ChatTitle = styled.div`
+  font-size: 40px;
+  font-family: "gmarket-medium";
 `;
