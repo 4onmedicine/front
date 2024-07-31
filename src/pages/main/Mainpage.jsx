@@ -5,7 +5,7 @@ import MainLogoSvg from '../../assets/MainLogo.svg';
 import { useState } from 'react';
 
 const MainPage = () => {
-  const [selectedOption, setSelectedOption] = useState('드롭다운 메뉴');
+  const [selectedOption, setSelectedOption] = useState("카테고리");
   return (
     <MainContainer>
       <ContentsContainer>
