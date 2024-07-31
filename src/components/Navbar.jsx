@@ -1,10 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import Button from '../utils/button';
-import { useNavigate } from 'react-router-dom';
-import NavIconSvg from '../assets/NavLogo.svg';
-import NavCursorSvg from '../assets/NavCursor.svg';
-import '../App.css';
+import React from "react";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import NavIconSvg from "../assets/NavLogo.svg";
+import NavCursorSvg from "../assets/NavCursor.svg";
+import "../App.css";
 
 // 스타일만 적용해둔 거라 hover 스타일 적용, focus 스타일 적용 등은 빠른 시일 내에 마저 작업해서 올리겠습니다.
 
@@ -15,13 +14,13 @@ const Navbar = () => {
       <NavIcon
         src={NavIconSvg}
         onClick={() => {
-          navigate('/');
+          navigate("/");
         }}
       />
       <NavButtonWrapper>
         <NavButton
           onClick={() => {
-            navigate('/');
+            navigate("/");
           }}
         >
           홈
@@ -31,10 +30,20 @@ const Navbar = () => {
       <NavButtonWrapper>
         <NavButton
           onClick={() => {
-            navigate('/prescription');
+            navigate("/prescription");
           }}
         >
           처방전 업로드
+        </NavButton>
+        <NavCursorIcon src={NavCursorSvg} />
+      </NavButtonWrapper>
+      <NavButtonWrapper>
+        <NavButton
+          onClick={() => {
+            navigate("/chat");
+          }}
+        >
+          채팅
         </NavButton>
         <NavCursorIcon src={NavCursorSvg} />
       </NavButtonWrapper>
