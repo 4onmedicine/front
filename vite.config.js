@@ -5,12 +5,12 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  // server: {
-  //   proxy: {
-  //     '/': {
-  //       target: apiUrl,
-  //       changeOrigin: true, // 프록시 요청의 호스트 헤더를 백엔드 서버의 도메인으로 변경
-  //     },
-  //   },
-  // },
+  server: {
+    proxy: {
+      "/api": {
+        target: apiUrl,
+        changeOrigin: true, // 프록시 요청의 호스트 헤더를 백엔드 서버의 도메인으로 변경
+      },
+    },
+  },
 });

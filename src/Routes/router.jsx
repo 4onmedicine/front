@@ -8,6 +8,7 @@ import ErrorPage from "../pages/ErrorPage";
 import DetailPage from "../pages/Detail/DetailPage";
 import Header from "../components/header/header";
 import Loading from "../components/Loading";
+import PrescriptionPage from "../pages/Prescription/PrescriptionPage";
 import ChatPage from "../pages/Chat/ChatPage";
 
 const router = [
@@ -29,6 +30,10 @@ const router = [
           { path: "sideeffects", element: <SideEffects /> },
           { path: "storage", element: <Storage /> },
         ],
+      },
+      {
+        path: "/prescription",
+        element: <PrescriptionPage />,
       },
       {
         path: "/chat",
