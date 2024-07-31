@@ -1,40 +1,42 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 
 const MainSearchBox = ({ value, onChange, selectedOption }) => {
   const inputRef = useRef(null);
   const [showWarning, setShowWarning] = useState(false);
 
-  const handleMouseEnter = () => {
-    if (inputRef.current.disabled) {
-      inputRef.current.style.border = "2px solid red";
+  const handleMouseHover = () => {
+    if (inputRef.current && inputRef.current.disabled) {
       setShowWarning(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (inputRef.current.disabled) {
-      inputRef.current.style.border = "none";
+    } else {
       setShowWarning(false);
     }
   };
 
+  useEffect(() => {
+    if (selectedOption !== "카테고리") {
+      setShowWarning(false);
+    }
+  }, [selectedOption]);
+
   return (
-    <div>
+    <Wrapper onMouseEnter={handleMouseHover}>
       <Input
         type="text"
         value={value}
         onChange={onChange}
         placeholder="검색어를 입력하세요"
-        disabled={selectedOption === "드롭다운 메뉴"}
+        disabled={selectedOption === "카테고리"}
         ref={inputRef}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       />
-      {showWarning && <WarningText>카테고리를 선택해 주세요</WarningText>}
-    </div>
+      {showWarning && <WarningText>카테고리를 먼저 선택해 주세요</WarningText>}
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  width: 100%;
+`;
 
 const Input = styled.input`
   width: 100%;
@@ -48,12 +50,16 @@ const Input = styled.input`
   &:disabled {
     cursor: not-allowed;
     background-color: white;
+    /* &:hover {
+      border: 2px solid red;
+    } */
   }
 `;
 
 const WarningText = styled.div`
   color: red;
-  margin-top: 5px;
+  margin-top: 17px;
+  font-size: 14px;
 `;
 
 export default MainSearchBox;
