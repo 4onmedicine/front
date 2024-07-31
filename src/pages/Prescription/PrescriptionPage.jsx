@@ -5,6 +5,7 @@ import {
   ContentsContainer,
   LogoDiv,
 } from '../main/Mainpage';
+import Loading from '../../components/loading/Loading';
 import MainLogoSvg from '../../assets/MainLogo.svg';
 import { useState } from 'react';
 
@@ -12,6 +13,7 @@ const PrescriptionPage = () => {
   const [uploadedInfo, setUploadedInfo] = useState(null); // 업로드한 파일 이름
   const [imageUrl, setImageUrl] = useState('');
   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -35,6 +37,11 @@ const PrescriptionPage = () => {
   };
   const handleSubmit = () => {
     // 서버로 파일 전송
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      // navigate();
+    }, 3000);
   };
 
   const handleFileUpload = (e) => {
@@ -50,39 +57,45 @@ const PrescriptionPage = () => {
   };
 
   return (
-    <MainContainer>
-      <ContentsContainer>
-        <LogoDiv>
-          <MainLogo src={MainLogoSvg} />
-        </LogoDiv>
-        <UploadLabel
-          //onDragEnter={handleDragStart}
-          onDragOver={handleDragOver}
-          //onDragLeave={handleDragEnd}
-          onDrop={handleDrop}
-        >
-          <UploadInput
-            type='file'
-            accept='image/*'
-            onChange={handleFileUpload}
-          />
-          {uploadedInfo ? (
-            <>
-              <PrevImage src={imageUrl} />
-              <MiniTitle>{uploadedInfo}</MiniTitle>
-            </>
-          ) : (
-            <>
-              <MiniTitle>클릭 혹은 파일을 이곳에 드롭하세요.</MiniTitle>
-              <MiniDesc>이미지 최소 사이즈: 100*100px</MiniDesc>
-            </>
-          )}
-        </UploadLabel>
-        <UploadButton disabled={buttonDisabled} onClick={handleSubmit}>
-          처방전 업로드
-        </UploadButton>
-      </ContentsContainer>
-    </MainContainer>
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <MainContainer>
+          <ContentsContainer>
+            <LogoDiv>
+              <MainLogo src={MainLogoSvg} />
+            </LogoDiv>
+            <UploadLabel
+              //onDragEnter={handleDragStart}
+              onDragOver={handleDragOver}
+              //onDragLeave={handleDragEnd}
+              onDrop={handleDrop}
+            >
+              <UploadInput
+                type='file'
+                accept='image/*'
+                onChange={handleFileUpload}
+              />
+              {uploadedInfo ? (
+                <>
+                  <PrevImage src={imageUrl} />
+                  <MiniDesc>{uploadedInfo}</MiniDesc>
+                </>
+              ) : (
+                <>
+                  <MiniTitle>클릭 혹은 파일을 이곳에 드롭하세요.</MiniTitle>
+                  <MiniDesc>이미지 최소 사이즈: 100*100px</MiniDesc>
+                </>
+              )}
+            </UploadLabel>
+            <UploadButton disabled={buttonDisabled} onClick={handleSubmit}>
+              처방전 업로드
+            </UploadButton>
+          </ContentsContainer>
+        </MainContainer>
+      )}
+    </>
   );
 };
 
@@ -112,12 +125,13 @@ const UploadLabel = styled.label`
 const MiniTitle = styled.p`
   font-size: 18px;
   font-weight: 500;
-  margin: 20px 0 10px;
+  margin: 20px 0;
 `;
 
 const MiniDesc = styled.p`
   margin: 0;
   font-size: 14px;
+  margin: 10px;
 `;
 
 const UploadButton = styled.button`
@@ -128,14 +142,18 @@ const UploadButton = styled.button`
   font-size: 14px;
   font-weight: 1000;
   color: white;
+  &:hover {
+    background-color: ${({ theme }) => theme.COLOR.LIGHTGREEN};
+  }
   background-color: ${({ theme }) => theme.COLOR.GREEN};
   &:disabled {
     background-color: #e9e9e9;
   }
+  cursor: pointer;
 `;
 
 const PrevImage = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
 `;
