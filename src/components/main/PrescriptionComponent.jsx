@@ -1,21 +1,12 @@
 import styled from 'styled-components';
-import {
-  MainContainer,
-  MainLogo,
-  ContentsContainer,
-  LogoDiv,
-} from '../main/Mainpage';
-import Loading from '../../components/loading/Loading';
-import MainLogoSvg from '../../assets/MainLogo.svg';
+import Loading from '../loading/Loading';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-const PrescriptionPage = () => {
+const PrescriptionComponent = () => {
   const [uploadedInfo, setUploadedInfo] = useState(null); // 업로드한 파일 이름
   const [imageUrl, setImageUrl] = useState('');
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -42,7 +33,7 @@ const PrescriptionPage = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      navigate('/prescription_detail/instruction');
+      // navigate();
     }, 3000);
   };
 
@@ -63,53 +54,48 @@ const PrescriptionPage = () => {
       {loading ? (
         <Loading />
       ) : (
-        <MainContainer>
-          <ContentsContainer>
-            <LogoDiv>
-              <MainLogo src={MainLogoSvg} />
-            </LogoDiv>
-            <UploadLabel
-              //onDragEnter={handleDragStart}
-              onDragOver={handleDragOver}
-              //onDragLeave={handleDragEnd}
-              onDrop={handleDrop}
-            >
-              <UploadInput
-                type='file'
-                accept='image/*'
-                onChange={handleFileUpload}
-              />
-              {uploadedInfo ? (
-                <>
-                  <PrevImage src={imageUrl} />
-                  <MiniDesc>{uploadedInfo}</MiniDesc>
-                </>
-              ) : (
-                <>
-                  <MiniTitle>클릭 혹은 파일을 이곳에 드롭하세요.</MiniTitle>
-                  <MiniDesc>이미지 최소 사이즈: 100*100px</MiniDesc>
-                </>
-              )}
-            </UploadLabel>
-            <UploadButton disabled={buttonDisabled} onClick={handleSubmit}>
-              처방전 업로드
-            </UploadButton>
-          </ContentsContainer>
-        </MainContainer>
+        <>
+          <UploadLabel
+            //onDragEnter={handleDragStart}
+            onDragOver={handleDragOver}
+            //onDragLeave={handleDragEnd}
+            onDrop={handleDrop}
+          >
+            <UploadInput
+              type='file'
+              accept='image/*'
+              onChange={handleFileUpload}
+            />
+            {uploadedInfo ? (
+              <>
+                <PrevImage src={imageUrl} />
+                <MiniDesc>{uploadedInfo}</MiniDesc>
+              </>
+            ) : (
+              <>
+                <MiniTitle>클릭 혹은 파일을 이곳에 드롭하세요.</MiniTitle>
+                <MiniDesc>이미지 최소 사이즈: 100*100px</MiniDesc>
+              </>
+            )}
+          </UploadLabel>
+          <UploadButton disabled={buttonDisabled} onClick={handleSubmit}>
+            처방전 업로드
+          </UploadButton>
+        </>
       )}
     </>
   );
 };
 
-export default PrescriptionPage;
+export default PrescriptionComponent;
 
 const UploadInput = styled.input`
   opacity: 0;
 `;
 
 const UploadLabel = styled.label`
-  width: 300px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   background-color: #fff;
   border-radius: 5px;
   border: 4px dashed #eee;
@@ -123,6 +109,7 @@ const UploadLabel = styled.label`
     border-color: #111;
     background-color: #efeef3;
   }
+  margin: 30px 0 30px 0;
 `;
 const MiniTitle = styled.p`
   font-size: 18px;

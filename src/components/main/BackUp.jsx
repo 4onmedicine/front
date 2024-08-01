@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
 
-const ChatPage = () => {
-  const [texts, setTexts] = useState("");
+const ChatAreaComponent = () => {
+  const [texts, setTexts] = useState('');
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const ref = useRef();
@@ -10,31 +10,31 @@ const ChatPage = () => {
   const inputAreaRef = useRef();
 
   const handleResizeHeight = (e) => {
-    ref.current.style.height = "auto";
+    ref.current.style.height = 'auto';
     ref.current.style.height = `${Math.min(ref.current.scrollHeight, 100)}px`; // 100px는 대략 5줄 높이
     const { value } = e.target;
     setTexts(value);
   };
 
   const onSubmit = () => {
-    if (texts.trim() !== "") {
+    if (texts.trim() !== '') {
       setIsLoading(true);
-      const newMessages = [...messages, { type: "user", text: texts }];
+      const newMessages = [...messages, { type: 'user', text: texts }];
       setMessages(newMessages);
-      setTexts("");
-      ref.current.style.height = "auto"; // 초기화 후 textarea 높이도 초기화
+      setTexts('');
+      ref.current.style.height = 'auto'; // 초기화 후 textarea 높이도 초기화
 
       // Mock 서버 응답
       setTimeout(() => {
-        const mockReply = "This is a mock reply from the server.";
-        setMessages([...newMessages, { type: "server", text: mockReply }]);
+        const mockReply = 'This is a mock reply from the server.';
+        setMessages([...newMessages, { type: 'server', text: mockReply }]);
         setIsLoading(false);
       }, 500);
     }
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === 'Enter' && !e.shiftKey) {
       // 엔터키 기본 동작인 줄바꿈을 방지
       e.preventDefault();
       if (!isLoading) {
@@ -42,7 +42,8 @@ const ChatPage = () => {
       }
     }
   };
-  // messages가 업데이트 될때마다 chatContentRef의 가장 아래로 스크롤 유지
+
+  // messages가 업데이트 될 때마다 chatContentRef의 가장 아래로 스크롤 유지
   useEffect(() => {
     if (chatContentRef.current && inputAreaRef.current) {
       chatContentRef.current.scrollTop = chatContentRef.current.scrollHeight;
@@ -52,14 +53,17 @@ const ChatPage = () => {
   return (
     <ChatContainer>
       <ChatArea>
-        <ChatContentArea ref={chatContentRef}>
-          <ChatInfoDiv>채팅 기능 설명 부분</ChatInfoDiv>
-          {messages.map((message, index) => (
-            <ChatMessage key={index} isUser={message.type === "user"}>
-              {message.text}
-            </ChatMessage>
-          ))}
-        </ChatContentArea>
+        {/*<ChatTitle>채팅방</ChatTitle>*/}
+        <InfoContainer>
+          <p>hi</p>
+          <ChatContentArea ref={chatContentRef}>
+            {messages.map((message, index) => (
+              <ChatMessage key={index} isUser={message.type === 'user'}>
+                {message.text}
+              </ChatMessage>
+            ))}
+          </ChatContentArea>
+        </InfoContainer>
         <InputArea ref={inputAreaRef}>
           <InputTextarea
             ref={ref}
@@ -68,38 +72,54 @@ const ChatPage = () => {
             onKeyPress={handleKeyPress}
             value={texts}
             disabled={isLoading} // 서버 응답 대기 중에는 비활성화
-            placeholder="메세지 챗GPT"
+            placeholder='메세지 챗GPT'
           />
-          {/* <InputSubmitBtn onClick={onSubmit}>제출</InputSubmitBtn> */}
         </InputArea>
       </ChatArea>
     </ChatContainer>
   );
 };
 
-export default ChatPage;
+export default ChatAreaComponent;
+
+const InfoContainer = styled.div`
+  display: flex;
+  //flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const BorderWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const ChatContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  //flex-direction: column;
   align-items: center;
-  width: 1080px;
+  width: 800px;
   margin: 0 auto;
-  background-color: #8fbb99;
+  background-color: white;
 `;
 
 const ChatArea = styled.div`
   position: relative;
-  width: 800px;
+  width: 100%;
   height: calc(100vh - 70px); /* 전체 높이에서 적절한 값을 뺍니다 */
-  background-color: #8fbb99;
+  //height: 100%;
+  background-color: #dcf8c6;
+  /* border: 4px solid #2cad66; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 20px;
+  padding-top: 4px;
 `;
 
 const ChatContentArea = styled.div`
-  border: 2px solid black;
+  /* border: 4px dashed #2cad66; */
+  border-radius: 20px;
   width: 700px;
   flex-grow: 1;
   overflow-y: auto; /* 내용이 넘칠 경우에만 스크롤 생성 */
@@ -108,7 +128,7 @@ const ChatContentArea = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: white;
+  background-color: #dcf8c6;
 `;
 
 const ChatMessage = styled.div`
@@ -118,9 +138,8 @@ const ChatMessage = styled.div`
   border-bottom: 1px solid #ddd;
   word-wrap: break-word;
   width: 300px;
-  align-self: flex-start;
-  /* align-self: ${(props) => (props.isUser ? "flex-end" : "flex-start")}; */
-  background-color: ${(props) => (props.isUser ? "#dcf8c6" : "#e0ffff	")};
+  align-self: flex-end;
+  background-color: ${(props) => (props.isUser ? '#e6e6e9' : '#f4f4f6')};
 `;
 
 const InputArea = styled.div`
@@ -145,11 +164,10 @@ const InputArea = styled.div`
 
 const InputTextarea = styled.textarea`
   border: none;
-  font-family: "gmarket-medium";
+  font-family: 'gmarket-medium';
   font-size: 18px;
   width: 690px;
   max-height: 90px; /* 최대 높이를 5줄로 제한 (약 100px) */
-  /* overflow-y: auto;  */
   resize: none; /* 사용자가 크기를 조절할 수 없도록 설정 */
   background-color: #2cad66;
   outline: none; /* 포커스 시 테두리 제거 */
@@ -158,15 +176,14 @@ const InputTextarea = styled.textarea`
   }
 `;
 
-const InputSubmitBtn = styled.button`
-  width: 30px;
-  height: 30px;
-  align-self: flex-end;
-`;
-
 const ChatInfoDiv = styled.div`
   width: 100%;
   height: 200px;
   border: 2px solid black;
   flex-shrink: 0;
+`;
+
+const ChatTitle = styled.div`
+  font-size: 25px;
+  font-family: monospace;
 `;

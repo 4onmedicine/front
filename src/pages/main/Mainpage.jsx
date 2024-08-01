@@ -1,11 +1,13 @@
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import DropContainer from '../../components/main/DropContainer';
 import { MainSearch } from '../../components/main/MainSearch';
 import MainLogoSvg from '../../assets/MainLogo.svg';
-import { useState } from 'react';
+import ChatAreaComponent from '../../components/main/ChatAreaComponent'; // 경로는 실제 파일 위치에 맞게 조정
+import { FaSearch } from 'react-icons/fa';
 
 const MainPage = () => {
-  const [selectedOption, setSelectedOption] = useState("카테고리");
+  const [selectedOption, setSelectedOption] = useState('카테고리');
   return (
     <MainContainer>
       <ContentsContainer>
@@ -24,8 +26,13 @@ const MainPage = () => {
               <MainSearch selectedOption={selectedOption} />
             </SearchInputArea>
           </SearchDiv>
-          <SearchBtnDiv></SearchBtnDiv>
+          <SearchBtnDiv>
+            <SearchIcon size='23' />
+          </SearchBtnDiv>
         </SearchContainer>
+        <SubContentsArea>
+          <ChatAreaComponent /> {/* 새로운 ChatAreaComponent 사용 */}
+        </SubContentsArea>
       </ContentsContainer>
     </MainContainer>
   );
@@ -53,7 +60,7 @@ export const ContentsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 1000px;
+  height: calc(100vh - 70px);
   background-color: white;
   gap: 30px;
   z-index: 1;
@@ -85,7 +92,6 @@ const SearchDiv = styled.div`
   border: 4px solid;
   border-color: ${({ theme }) => theme.COLOR.GREEN};
   background-color: white;
-  //padding: 10px 30px 10px 30px;
 `;
 
 const SearchBtnDiv = styled.div`
@@ -95,6 +101,10 @@ const SearchBtnDiv = styled.div`
   border-color: ${({ theme }) => theme.COLOR.GREEN};
   width: 90px;
   background-color: ${({ theme }) => theme.COLOR.GREEN};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;
 
 const SearchCategoryArea = styled.div`
@@ -115,5 +125,27 @@ const SearchInputArea = styled.div`
   width: 100%;
   height: 40px;
   padding-left: 10px;
+  padding-right: 10px;
+`;
+
+const SubContentsArea = styled.div`
+  width: 100%;
+  height: 800px;
+  display: flex;
+`;
+
+const PrescriptionArea = styled.div`
+  width: 300px;
+  height: 100%;
+  /* border-right: 2px solid black; */
+`;
+
+const ChatArea = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+const SearchIcon = styled(FaSearch)`
+  color: white;
   padding-right: 10px;
 `;
