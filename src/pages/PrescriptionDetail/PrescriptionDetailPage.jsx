@@ -24,7 +24,6 @@ const PrescriptionDetailPage = () => {
     setDetailData(DataArray[currentIndex]);
     setLeftEnable(!(currentIndex === 0));
     setRightEnable(currentIndex < DataArray.length - 1);
-    console.log(currentIndex < DataArray.length - 1);
   }, [currentIndex, DataArray, setDetailData]);
 
   const handleLeftButton = () => {
@@ -35,6 +34,9 @@ const PrescriptionDetailPage = () => {
   };
   const handleRightButton = () => {
     if (currentIndex === DataArray.length - 1) {
+      return;
+    }
+    if (DataArray[currentIndex + 1] == null) {
       return;
     }
     setCurrentIndex(currentIndex + 1);

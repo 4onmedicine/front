@@ -54,5 +54,6 @@ export const presDataArrayState = atom({
       itemImage:
         'https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1Mxwka5v45V',
     },
+    null,
   ],
 });
