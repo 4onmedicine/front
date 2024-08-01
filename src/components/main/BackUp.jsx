@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import NavLogo from '../../assets/NavLogo.svg';
 
 const ChatAreaComponent = () => {
   const [texts, setTexts] = useState('');
@@ -52,131 +51,139 @@ const ChatAreaComponent = () => {
   }, [messages]);
 
   return (
-    <>
-      <ChatContainer>
-        <BackGround>
-          <SideArea>
-            <SideLogo src={NavLogo} />
-            <SideTitle>GPT에게 간단한 질의응답을 할 수 있습니다</SideTitle>
-            <SideDesc>Ex) 나 감기 걸렸어.</SideDesc>
-            <SideCaution>
-              답변의 전문성은 보장할 수 없으며, 의약품의 사용은 항상 약사와
-              상의하시기 바랍니다.
-            </SideCaution>
-          </SideArea>
-          <ChatArea ref={chatContentRef}>
+    <ChatContainer>
+      <ChatArea>
+        {/*<ChatTitle>채팅방</ChatTitle>*/}
+        <InfoContainer>
+          <p>hi</p>
+          <ChatContentArea ref={chatContentRef}>
             {messages.map((message, index) => (
               <ChatMessage key={index} isUser={message.type === 'user'}>
                 {message.text}
               </ChatMessage>
             ))}
-          </ChatArea>
-        </BackGround>
+          </ChatContentArea>
+        </InfoContainer>
         <InputArea ref={inputAreaRef}>
-          <InputTextArea
+          <InputTextarea
             ref={ref}
             rows={1}
             onChange={handleResizeHeight}
-            onKeyDown={handleKeyPress}
+            onKeyPress={handleKeyPress}
             value={texts}
-            disabled={isLoading}
-            placeholder='GPT에게 메세지 전송'
+            disabled={isLoading} // 서버 응답 대기 중에는 비활성화
+            placeholder='메세지 챗GPT'
           />
         </InputArea>
-      </ChatContainer>
-    </>
+      </ChatArea>
+    </ChatContainer>
   );
 };
 
 export default ChatAreaComponent;
 
+const InfoContainer = styled.div`
+  display: flex;
+  //flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const BorderWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const ChatContainer = styled.div`
   display: flex;
-  width: 100%;
-  justify-content: center;
-  flex-direction: column;
+  //flex-direction: column;
   align-items: center;
-`;
-
-const BackGround = styled.div`
-  background-color: #f5f5f5;
   width: 800px;
-  border-radius: 10px;
-  height: calc(100vh - 530px);
-  display: flex;
-`;
-
-const SideArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 35%;
-  justify-content: center;
-  align-items: center;
-`;
-
-const SideTitle = styled.p`
-  font-size: 16px;
-  align-self: center;
-`;
-const SideDesc = styled.p`
-  font-size: 14px;
-  align-self: center;
-  text-align: center;
-  margin-top: 5px;
-`;
-const SideLogo = styled.img`
-  width: 60px;
-  margin: 30px;
-`;
-
-const SideCaution = styled.p`
-  text-align: left;
-  font-size: 12px;
-  position: absolute;
-  max-width: 25%;
-  bottom: 80px;
-  color: gray;
+  margin: 0 auto;
+  background-color: white;
 `;
 
 const ChatArea = styled.div`
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 70px); /* 전체 높이에서 적절한 값을 뺍니다 */
+  //height: 100%;
+  background-color: #dcf8c6;
+  /* border: 4px solid #2cad66; */
   display: flex;
   flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  padding-top: 4px;
+`;
+
+const ChatContentArea = styled.div`
+  /* border: 4px dashed #2cad66; */
+  border-radius: 20px;
+  width: 700px;
   flex-grow: 1;
-  overflow-y: auto;
-  background-color: #dcf8c6;
-  width: 45%;
-  border-radius: 10px;
+  overflow-y: auto; /* 내용이 넘칠 경우에만 스크롤 생성 */
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-  padding-top: 10px;
+  background-color: #dcf8c6;
 `;
 
 const ChatMessage = styled.div`
-  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border-bottom: 1px solid #ddd;
   word-wrap: break-word;
-  width: 80%;
+  width: 300px;
   align-self: flex-end;
-  background-color: ${(props) => (props.isUser ? 'white' : '#429d6b')};
-  align-self: ${(props) => (props.isUser ? 'flex-end' : 'flex-start')};
-  border: 1px solid ${(props) => (props.isUser ? '#75d3a0' : 'none')};
-  color: ${(props) => (props.isUser ? 'black' : 'white')};
-  padding: 15px 0 15px 15px;
-  font-size: 14px;
-  margin: 0 5px 0 5px;
+  background-color: ${(props) => (props.isUser ? '#e6e6e9' : '#f4f4f6')};
 `;
 
 const InputArea = styled.div`
   display: flex;
+  gap: 5px;
   align-items: center;
   justify-content: center;
-  width: 74%;
-  border: 1px solid;
+  width: 700px;
+  background-color: #2cad66;
+  z-index: 999;
   border-radius: 10px;
-  height: 40px;
+  padding: 3px 10px 3px 10px;
+  overflow: visible;
+  position: sticky; /* 부모 요소의 흐름을 벗어나지 않고 고정 위치 */
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-5%);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  flex-direction: column-reverse; /* 위로 확장되도록 설정 */
 `;
-const InputTextArea = styled.textarea`
-  resize: none;
-  width: 90%;
-  max-height: 30px;
+
+const InputTextarea = styled.textarea`
   border: none;
-  outline: none;
+  font-family: 'gmarket-medium';
+  font-size: 18px;
+  width: 690px;
+  max-height: 90px; /* 최대 높이를 5줄로 제한 (약 100px) */
+  resize: none; /* 사용자가 크기를 조절할 수 없도록 설정 */
+  background-color: #2cad66;
+  outline: none; /* 포커스 시 테두리 제거 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const ChatInfoDiv = styled.div`
+  width: 100%;
+  height: 200px;
+  border: 2px solid black;
+  flex-shrink: 0;
+`;
+
+const ChatTitle = styled.div`
+  font-size: 25px;
+  font-family: monospace;
 `;

@@ -1,6 +1,7 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import { useLocation, useNavigate } from "react-router-dom";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { FaScissors } from 'react-icons/fa6';
 
 const DetailNav = () => {
   const navigate = useNavigate();
@@ -8,46 +9,48 @@ const DetailNav = () => {
 
   return (
     <NavContainer>
-      <IconDiv>가위아이콘</IconDiv>
+      <IconDiv>
+        <FaScissors size={30} />
+      </IconDiv>
       <DashLine />
       <NavBtn
         onClick={() => {
-          navigate("instruction");
+          navigate('instruction');
         }}
         // Transient Props: 특정 props가 DOM 요소로 전달되지 않도록 하기 위해 사용
-        $active={location.pathname.includes("instruction")}
+        $active={location.pathname.includes('instruction')}
       >
         사용법
       </NavBtn>
       <NavBtn
         onClick={() => {
-          navigate("caution");
+          navigate('caution');
         }}
-        $active={location.pathname.includes("caution")}
+        $active={location.pathname.includes('caution')}
       >
         주의사항
       </NavBtn>
       <NavBtn
         onClick={() => {
-          navigate("interaction");
+          navigate('interaction');
         }}
-        $active={location.pathname.includes("interaction")}
+        $active={location.pathname.includes('interaction')}
       >
         상호작용
       </NavBtn>
       <NavBtn
         onClick={() => {
-          navigate("sideeffects");
+          navigate('sideeffects');
         }}
-        $active={location.pathname.includes("sideeffects")}
+        $active={location.pathname.includes('sideeffects')}
       >
         부작용
       </NavBtn>
       <NavBtn
         onClick={() => {
-          navigate("storage");
+          navigate('storage');
         }}
-        $active={location.pathname.includes("storage")}
+        $active={location.pathname.includes('storage')}
       >
         보관방법
       </NavBtn>
@@ -81,7 +84,7 @@ const NavBtn = styled.div`
   background-color: white;
   border: 4px solid white;
   cursor: pointer;
-  color: ${({ $active }) => ($active ? "black" : "#bababa")};
+  color: ${({ $active }) => ($active ? 'black' : '#bababa')};
 `;
 
 const IconDiv = styled.div`
@@ -90,5 +93,8 @@ const IconDiv = styled.div`
   background-color: white;
   width: 50px;
   height: 100%;
-  border: 1px solid;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
