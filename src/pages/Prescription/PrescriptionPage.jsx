@@ -7,15 +7,21 @@ import {
 } from '../main/Mainpage';
 import Loading from '../../components/loading/Loading';
 import MainLogoSvg from '../../assets/MainLogo.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { presDataArrayState } from '../../atoms/atom';
 
 const PrescriptionPage = () => {
   const [uploadedInfo, setUploadedInfo] = useState(null); // 업로드한 파일 이름
-  const [imageUrl, setImageUrl] = useState('');
-  const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState(''); // 이미지 url
+  const [targetImage, setTargetImage] = useState(null); // 이미지 저장 state
+  const [buttonDisabled, setButtonDisabled] = useState(true); // 처방전 업로드 버튼 비활성화 여부
+  const [loading, setLoading] = useState(false); // 로딩 화면 출력 여부
   const navigate = useNavigate();
+  const [medCode, setMedCode] = useState([]); // 이미지 POST 후 받아온 약 보험코드 array
+  const setPresData = useSetRecoilState(presDataArrayState); // 보험코드 array POST 후 받아온 약 정보 array를 Recoil State로 저장
+  const presDataArray = useRecoilValue(presDataArrayState);
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -26,24 +32,83 @@ const PrescriptionPage = () => {
   };
   const handleDrop = (e) => {
     e.preventDefault();
-    //setIsActive(false);
     const targetFile = e.dataTransfer.files[0];
     setFileName(targetFile);
+    setTargetImage(e.target.files[0]);
     const reader = new FileReader();
     reader.readAsDataURL(targetFile);
     reader.onloadend = () => {
-      console.log(reader.result);
+      //console.log(reader.result);
       setImageUrl(reader.result);
-      setButtonDisabled(false);
     };
+    console.log(targetImage);
   };
+  useEffect(() => {
+    if (!targetImage) {
+      setButtonDisabled(true);
+      return;
+    }
+    const formData = new FormData();
+    formData.append('image', targetImage);
+    // 이미지 업로드되자마자 서버에 보내서 약 코드 받아오기
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          import.meta.env.VITE_BACKEND_URL + `/send-image`,
+          {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'multipart/form-data',
+            },
+            body: formData,
+          }
+        );
+        setMedCode(res.json().data); // 백엔드에서 json에 key랑 value 매핑해서 주도록 말하기
+      } catch (e) {
+        console.log(e);
+        return;
+      }
+    };
+    fetchData();
+    setButtonDisabled(false);
+  }, [targetImage]); // onChange 이벤트로 파일 업로드시 imageUrl State를 업데이트하므로 이를 감지해 서버에 이미지 링크 전달
+
   const handleSubmit = () => {
-    // 서버로 파일 전송
+    // 서버로 약 코드 전송 후 약 정보 받아와 recoil value로 저장
+    console.log(targetImage);
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      navigate('/prescription_detail/instruction');
-    }, 3000);
+    const reqBody = {
+      data: medCode,
+    };
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          import.meta.env.VITE_BACKEND_URL + `/receive-data`,
+          {
+            method: 'POST',
+            headers: {
+              Accept: 'application.json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reqBody),
+          }
+        );
+        setPresData(res.json().data.filter((element) => element != null)); // 백엔드에서 json에 key랑 value 매핑해서 주도록 말하기
+      } catch (e) {
+        console.log(e);
+        return;
+      } finally {
+        for (let element in presDataArray) {
+          if (element == null) {
+            setPresData(presDataArray.splice(presDataArray.indexOf(null), 1));
+          }
+        }
+      }
+    };
+    fetchData();
+    setLoading(false);
+    navigate('/prescription_detail/instruction');
   };
 
   const handleFileUpload = (e) => {
@@ -52,9 +117,9 @@ const PrescriptionPage = () => {
     const reader = new FileReader();
     reader.readAsDataURL(targetFile);
     reader.onloadend = () => {
-      console.log(reader.result);
+      //console.log(reader.result);
       setImageUrl(reader.result);
-      setButtonDisabled(false);
+      setTargetImage(e.target.files[0]);
     };
   };
 
