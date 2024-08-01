@@ -1,7 +1,8 @@
 const HomeApi = {
   getHomeByName: async (query) => {
     const response = await fetch(
-      import.meta.env.VITE_BACKEND_URL + `/home?search=${query}`,
+      // import.meta.env.VITE_BACKEND_URL + `/home?search=${query}`,
+      `http://localhost:8080/home?search=${query}`,
       {
         headers: {
           Accept: "application/json",
@@ -16,7 +17,8 @@ const HomeApi = {
   },
   getHomeBySymptom: async (query) => {
     const response = await fetch(
-      import.meta.env.VITE_BACKEND_URL + `/home?efcy=${query}`,
+      // import.meta.env.VITE_BACKEND_URL + `/home?efcy=${query}`,
+      `http://localhost:8080/home?efcy=${query}`,
       {
         headers: {
           Accept: "application/json",

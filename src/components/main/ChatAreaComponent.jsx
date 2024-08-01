@@ -26,7 +26,7 @@ const ChatAreaComponent = () => {
 
       // Mock 서버 응답
       setTimeout(() => {
-        const mockReply = "This is a mock reply from the server.";
+        const mockReply = "This is a mock reply from the server."; // 서버랑 연결하면
         setMessages([...newMessages, { type: "server", text: mockReply }]);
         setIsLoading(false);
       }, 500);
@@ -122,7 +122,7 @@ const ChatMessage = styled.div`
   border-bottom: 1px solid #ddd;
   word-wrap: break-word;
   width: 300px;
-  align-self: flex-start;
+  align-self: ${(props) => (props.isUser ? "flex-start" : "flex-end")};
   background-color: ${(props) => (props.isUser ? "#e6e6e9" : "#f4f4f6")};
 `;
 
@@ -153,7 +153,7 @@ const InputTextarea = styled.textarea`
   width: 690px;
   max-height: 90px; /* 최대 높이를 5줄로 제한 (약 100px) */
   resize: none; /* 사용자가 크기를 조절할 수 없도록 설정 */
-  background-color: #2cad66;
+  background-color: rgb(44, 173, 102, 0.9);
   outline: none; /* 포커스 시 테두리 제거 */
   &::-webkit-scrollbar {
     display: none;

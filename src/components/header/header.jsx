@@ -19,6 +19,7 @@ const Header = () => {
             <SearchInput />
           </SearchContainer>
           <Navbar />
+          <ChatButton>채팅</ChatButton>
         </>
       ) : (
         <Navbar />
@@ -52,4 +53,13 @@ const SearchContainer = styled.div`
   justify-content: center;
   position: relative;
   z-index: 2;
+`;
+
+const ChatButton = styled.div`
+  width: 100px;
+  border-radius: 50px;
+  position: sticky;
+  top: 1;
+  z-index: 999;
+  background-color: reds;
 `;
