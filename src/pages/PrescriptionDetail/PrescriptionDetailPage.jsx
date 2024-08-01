@@ -15,7 +15,6 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import styled from 'styled-components';
 
 const PrescriptionDetailPage = () => {
-  const setPresDataArray = useSetRecoilState(presDataArrayState);
   const setDetailData = useSetRecoilState(detailDataState);
   const DataArray = useRecoilValue(presDataArrayState);
   const [currentIndex, setCurrentIndex] = useState(0);
