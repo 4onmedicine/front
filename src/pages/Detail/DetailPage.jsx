@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import { FlexColumnCSS } from "../../styles/common";
-import DetailNav from "../../components/detail/DetailNav";
-import { Outlet, useParams } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { detailDataState } from "../../atoms/atom";
-import DetailContent from "../../components/detail/DetailContent";
-import useGetDetail from "../../query/get/useGetDetail";
+import { useEffect } from 'react';
+import styled from 'styled-components';
+import { FlexColumnCSS } from '../../styles/common';
+import DetailNav from '../../components/detail/DetailNav';
+import { Outlet, useParams } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { detailDataState } from '../../atoms/atom';
+import DetailContent from '../../components/detail/DetailContent';
+import useGetDetail from '../../query/get/useGetDetail';
 
 const DetailPage = () => {
   const setDetailData = useSetRecoilState(detailDataState);
@@ -46,17 +46,17 @@ const DetailPage = () => {
 
 export default DetailPage;
 
-const DetailContainer = styled.div`
+export const DetailContainer = styled.div`
   ${FlexColumnCSS};
   position: relative;
   width: 100%;
-
   background-color: #bdbdbd;
   align-items: center;
+  justify-content: center;
   padding-top: 50px;
 `;
 
-const DetailWrapper = styled.div`
+export const DetailWrapper = styled.div`
   border: 5px solid ${({ theme }) => theme.COLOR.BORDERGREEN};
   border-radius: 10px;
   width: 100%;
@@ -64,13 +64,13 @@ const DetailWrapper = styled.div`
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 1px 10px rgba(0, 0, 0, 0.22);
 `;
 
-const DetailMain = styled.div`
+export const DetailMain = styled.div`
   width: 100%;
   height: 225px;
   background-color: #bdbdbd;
 `;
 
-const DetailNavContainer = styled.div`
+export const DetailNavContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
   height: 50px;
@@ -78,7 +78,7 @@ const DetailNavContainer = styled.div`
   overflow: hidden;
 `;
 
-const DetailSub = styled.div`
+export const DetailSub = styled.div`
   width: 100%;
   height: fit-content;
   background-color: white;
