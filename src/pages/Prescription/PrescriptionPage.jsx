@@ -62,7 +62,6 @@ const PrescriptionPage = () => {
             //   'Content-Type': 'multipart/form-data',
             // },
             body: formData,
-            cache: 'no-cache',
           }
         );
         const data = await res.json();
@@ -90,7 +89,7 @@ const PrescriptionPage = () => {
           {
             method: 'POST',
             headers: {
-              Accept: 'application.json',
+              Accept: 'application/json',
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(medCode),
