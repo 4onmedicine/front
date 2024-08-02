@@ -92,7 +92,7 @@ const PrescriptionPage = () => {
               Accept: 'application.json',
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(reqBody),
+            body: JSON.stringify(medCode),
           }
         );
         let data = await res.json();
