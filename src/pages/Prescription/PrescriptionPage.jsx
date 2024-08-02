@@ -47,7 +47,7 @@ const PrescriptionPage = () => {
       setButtonDisabled(true);
       return;
     }
-
+    setButtonDisabled(true);
     const formData = new FormData();
     formData.append('image', targetImage);
     // 이미지 업로드되자마자 서버에 보내서 약 코드 받아오기
@@ -66,7 +66,6 @@ const PrescriptionPage = () => {
         );
         const data = await res.json();
         setMedCode(data);
-        console.log(data);
       } catch (e) {
         console.log(e);
         return;
@@ -84,6 +83,7 @@ const PrescriptionPage = () => {
     // };
     const fetchData = async () => {
       try {
+        console.log(medCode);
         const res = await fetch(
           import.meta.env.VITE_BACKEND_URL + `/receive-data`,
           {
@@ -92,7 +92,7 @@ const PrescriptionPage = () => {
               Accept: 'application.json',
               'Content-Type': 'application/json',
             },
-            body: medCode,
+            body: JSON.stringify(medCode),
           }
         );
         let data = await res.json();
