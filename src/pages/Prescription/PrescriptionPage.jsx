@@ -79,9 +79,9 @@ const PrescriptionPage = () => {
   const handleSubmit = () => {
     // 서버로 약 코드 전송 후 약 정보 받아와 recoil value로 저장
     setLoading(true);
-    const reqBody = {
-      data: medCode,
-    };
+    // const reqBody = {
+    //   data: medCode,
+    // };
     const fetchData = async () => {
       try {
         const res = await fetch(
@@ -92,7 +92,7 @@ const PrescriptionPage = () => {
               Accept: 'application.json',
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(medCode),
+            body: medCode,
           }
         );
         let data = await res.json();
