@@ -71,7 +71,7 @@ const NavContainer = styled.div`
 
 const DashLine = styled.div`
   position: absolute;
-  z-index: 2;
+  z-index: 0;
   border: 3px dashed gray;
   width: 80%;
   max-width: 880px;

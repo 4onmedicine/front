@@ -1,19 +1,18 @@
-import React from "react";
-import { useRecoilValue } from "recoil";
-import styled from "styled-components";
-import { detailDataState } from "../../atoms/atom";
+import React from 'react';
+import { useRecoilValue } from 'recoil';
+import styled from 'styled-components';
+import { detailDataState } from '../../atoms/atom';
 
 const DetailContent = () => {
-  const { itemImage, itemName, efcyQesitm } = useRecoilValue(detailDataState);
+  const { itemImage, itemName } = useRecoilValue(detailDataState);
   return (
     <DetailContentContainer>
       <Contents>
         <ImgArea>
-          <PillImage src={itemImage} alt="알약 이미지" />
+          <PillImage src={itemImage} alt='알약 이미지' />
         </ImgArea>
         <TextArea>
           <MedicineTitle>{itemName}</MedicineTitle>
-          <MedicineEfficacy>{efcyQesitm}</MedicineEfficacy>
         </TextArea>
       </Contents>
     </DetailContentContainer>
@@ -23,54 +22,59 @@ const DetailContent = () => {
 export default DetailContent;
 
 const DetailContentContainer = styled.div`
-  box-sizing: border-box;
+  //box-sizing: border-box;
   width: 100%;
-  margin: 0 auto;
+  //margin: 0 auto;
   height: 100%;
   background-color: white;
   padding-top: 10px;
   padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 30px;
 `;
 
 const Contents = styled.div`
-  width: 600px;
+  max-width: 600px;
   height: 100%;
   display: flex;
-  align-items: flex-start;
-  padding-right: 10px;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const ImgArea = styled.div`
-  position: absolute;
-  margin-top: 15px;
-  width: 64px;
-  height: 64px;
+  position: relative;
+  margin-top: 50px;
+  margin-left: 15px;
+  width: 330px;
+  height: 330px;
 `;
 
 const TextArea = styled.div`
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
-  margin-left: 75px;
-  width: 530px;
-  height: 150px;
-  gap: 10px;
+  margin-left: 15px;
+  max-width: 330px;
 `;
 
 const MedicineTitle = styled.h1`
   font-size: 30px;
-  margin: 15px 0;
+  margin: 30px 0;
   padding-left: 5px;
 `;
 
-const MedicineEfficacy = styled.div`
-  padding: 5px;
-`;
+// const MedicineEfficacy = styled.div`
+//   padding: 5px;
+// `;
 
 const PillImage = styled.img`
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  border: 3px solid #bababa;
-  border-radius: 2px;
+  //overflow: hidden;
+  border: 0px solid #bababa;
+  border-radius: 10px;
+  z-index: 5;
+  position: relative;
 `;

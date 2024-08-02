@@ -7,6 +7,7 @@ import { useSetRecoilState } from 'recoil';
 import { detailDataState } from '../../atoms/atom';
 import DetailContent from '../../components/detail/DetailContent';
 import useGetDetail from '../../query/get/useGetDetail';
+import DetailInfo from '../../components/detail/DetailInfo';
 
 const DetailPage = () => {
   const setDetailData = useSetRecoilState(detailDataState);
@@ -33,12 +34,15 @@ const DetailPage = () => {
         <DetailMain>
           <DetailContent />
         </DetailMain>
+        {/*
         <DetailNavContainer>
           <DetailNav />
         </DetailNavContainer>
         <DetailSub>
           <Outlet />
         </DetailSub>
+        */}
+        <DetailInfo />
       </DetailWrapper>
     </DetailContainer>
   );
@@ -62,16 +66,22 @@ export const DetailWrapper = styled.div`
   width: 100%;
   max-width: 900px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 1px 10px rgba(0, 0, 0, 0.22);
+  height: calc(100vh - 250px);
+  background-color: white;
+  display: flex;
+  align-items: center;
 `;
 
 export const DetailMain = styled.div`
-  width: 100%;
-  height: 225px;
+  height: 90%;
   background-color: #bdbdbd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const DetailNavContainer = styled.div`
-  box-sizing: border-box;
+  //box-sizing: border-box;
   width: 100%;
   height: 50px;
   background-color: white;

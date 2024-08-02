@@ -2,17 +2,14 @@ import { useEffect, useState } from 'react';
 import {
   DetailContainer,
   DetailMain,
-  DetailNavContainer,
-  DetailSub,
   DetailWrapper,
 } from '../Detail/DetailPage';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { detailDataState, presDataArrayState } from '../../atoms/atom';
 import DetailContent from '../../components/detail/DetailContent';
-import DetailNav from '../../components/detail/DetailNav';
-import { Outlet } from 'react-router-dom';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import styled from 'styled-components';
+import DetailInfo from '../../components/detail/DetailInfo';
 
 const PrescriptionDetailPage = () => {
   const setDetailData = useSetRecoilState(detailDataState);
@@ -56,12 +53,15 @@ const PrescriptionDetailPage = () => {
         <DetailMain>
           <DetailContent />
         </DetailMain>
+        {/*
         <DetailNavContainer>
           <DetailNav />
         </DetailNavContainer>
         <DetailSub>
           <Outlet />
-        </DetailSub>
+        </DetailSub> 
+        */}
+        <DetailInfo />
       </DetailWrapper>
       <Right
         size={30}
@@ -83,11 +83,11 @@ const Title = styled.p`
 const Left = styled(FaAngleLeft)`
   position: absolute;
   left: calc(50vw - 500px);
-  top: 270px;
+  top: calc(100vh - 500px);
 `;
 
 const Right = styled(FaAngleRight)`
   position: absolute;
   right: calc(50vw - 500px);
-  top: 270px;
+  top: calc(100vh - 500px);
 `;

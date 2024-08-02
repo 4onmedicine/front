@@ -41,13 +41,13 @@ const PrescriptionPage = () => {
       //console.log(reader.result);
       setImageUrl(reader.result);
     };
-    console.log(targetImage);
   };
   useEffect(() => {
     if (!targetImage) {
       setButtonDisabled(true);
       return;
     }
+
     const formData = new FormData();
     formData.append('image', targetImage);
     // 이미지 업로드되자마자 서버에 보내서 약 코드 받아오기
@@ -64,7 +64,8 @@ const PrescriptionPage = () => {
             body: formData,
           }
         );
-        setMedCode(res.json().data); // 백엔드에서 json에 key랑 value 매핑해서 주도록 말하기
+        setMedCode(res.json()); // 백엔드에서 json에 key랑 value 매핑해서 주도록 말하기
+        console.log(res);
       } catch (e) {
         console.log(e);
         return;
@@ -76,7 +77,6 @@ const PrescriptionPage = () => {
 
   const handleSubmit = () => {
     // 서버로 약 코드 전송 후 약 정보 받아와 recoil value로 저장
-    console.log(targetImage);
     setLoading(true);
     const reqBody = {
       data: medCode,
@@ -94,7 +94,8 @@ const PrescriptionPage = () => {
             body: JSON.stringify(reqBody),
           }
         );
-        setPresData(res.json().data.filter((element) => element != null)); // 백엔드에서 json에 key랑 value 매핑해서 주도록 말하기
+        setPresData(res.json().filter((element) => element != null)); // 백엔드에서 json에 key랑 value 매핑해서 주도록 말하기
+        console.log(res);
       } catch (e) {
         console.log(e);
         return;
@@ -113,14 +114,39 @@ const PrescriptionPage = () => {
 
   const handleFileUpload = (e) => {
     const targetFile = e.target.files[0];
+    setTargetImage(targetFile);
     setFileName(targetFile);
     const reader = new FileReader();
     reader.readAsDataURL(targetFile);
     reader.onloadend = () => {
       //console.log(reader.result);
       setImageUrl(reader.result);
-      setTargetImage(e.target.files[0]);
     };
+    /*
+    try {
+      const formData = new FormData();
+      formData.append('image', e.target.files[0]);
+      console.log(formData);
+
+      const res = await fetch(
+        import.meta.env.VITE_BACKEND_URL + `/send-image`,
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+          },
+          body: formData,
+        }
+      );
+      setMedCode(res.json());
+    } catch (e) {
+      console.log(e);
+      return;
+    } finally {
+      setButtonDisabled(false);
+    }
+      */
   };
 
   return (
