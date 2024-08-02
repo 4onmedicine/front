@@ -34,7 +34,7 @@ const PrescriptionPage = () => {
     e.preventDefault();
     const targetFile = e.dataTransfer.files[0];
     setFileName(targetFile);
-    setTargetImage(e.target.files[0]);
+    setTargetImage(targetFile);
     const reader = new FileReader();
     reader.readAsDataURL(targetFile);
     reader.onloadend = () => {
@@ -64,8 +64,9 @@ const PrescriptionPage = () => {
             body: formData,
           }
         );
-        setMedCode(res.json()); // 백엔드에서 json에 key랑 value 매핑해서 주도록 말하기
-        console.log(res);
+        const data = await res.json();
+        setMedCode(data);
+        console.log(data);
       } catch (e) {
         console.log(e);
         return;
@@ -94,8 +95,10 @@ const PrescriptionPage = () => {
             body: JSON.stringify(reqBody),
           }
         );
-        setPresData(res.json().filter((element) => element != null)); // 백엔드에서 json에 key랑 value 매핑해서 주도록 말하기
-        console.log(res);
+        let data = await res.json();
+        setPresData(data.filter((element) => element != null));
+        //setPresData(res.json().filter((element) => element != null)); // 백엔드에서 json에 key랑 value 매핑해서 주도록 말하기
+        console.log(data);
       } catch (e) {
         console.log(e);
         return;
