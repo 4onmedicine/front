@@ -50,6 +50,7 @@ const PrescriptionPage = () => {
     setButtonDisabled(true);
     const formData = new FormData();
     formData.append('image', targetImage);
+    console.log(targetImage);
     // 이미지 업로드되자마자 서버에 보내서 약 코드 받아오기
     const fetchData = async () => {
       try {
