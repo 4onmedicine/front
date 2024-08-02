@@ -57,10 +57,10 @@ const PrescriptionPage = () => {
           import.meta.env.VITE_BACKEND_URL + `/send-image`,
           {
             method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'multipart/form-data',
-            },
+            // headers: {
+            //   Accept: 'application/json',
+            //   'Content-Type': 'multipart/form-data',
+            // },
             body: formData,
           }
         );
