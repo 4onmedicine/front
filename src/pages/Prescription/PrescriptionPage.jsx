@@ -62,6 +62,7 @@ const PrescriptionPage = () => {
             //   'Content-Type': 'multipart/form-data',
             // },
             body: formData,
+            cache: 'no-cache',
           }
         );
         const data = await res.json();
