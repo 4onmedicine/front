@@ -101,10 +101,12 @@ const PrescriptionPage = () => {
         );
         let data = await res.json().then((result) => {
           setPresData(result.filter((element) => element !== null));
+          console.log(result.filter((element) => element !== null));
         });
         //setPresData(data.filter((element) => element != null));
         //setPresData(res.json().filter((element) => element != null)); // 백엔드에서 json에 key랑 value 매핑해서 주도록 말하기
         console.log(data);
+        console.log(data.filter((element) => element !== null));
       } catch (e) {
         console.log(e);
         return;
