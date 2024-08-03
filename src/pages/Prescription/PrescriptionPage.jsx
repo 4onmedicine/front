@@ -65,10 +65,11 @@ const PrescriptionPage = () => {
             body: formData,
           }
         );
-        const data = await res.json().then(() => {
+        const data = await res.json().then((result) => {
           setButtonDisabled(false);
+          setMedCode(result);
+          console.log(result);
         });
-        setMedCode(data);
       } catch (e) {
         console.log(e);
         return;
