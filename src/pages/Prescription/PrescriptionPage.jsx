@@ -102,6 +102,10 @@ const PrescriptionPage = () => {
         let data = await res.json().then((result) => {
           setPresData(result.filter((element) => element !== null));
           console.log(result.filter((element) => element !== null));
+          if (presDataArray.length === 0) {
+            alert('데이터 인식에 실패했습니다.');
+            navigate('/');
+          }
           setLoading(false);
           navigate('/prescription_detail/instruction');
         });
