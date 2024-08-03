@@ -10,6 +10,7 @@ import DetailContent from '../../components/detail/DetailContent';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import styled from 'styled-components';
 import DetailInfo from '../../components/detail/DetailInfo';
+import { useNavigate } from 'react-router-dom';
 
 const PrescriptionDetailPage = () => {
   const setDetailData = useSetRecoilState(detailDataState);
@@ -17,13 +18,18 @@ const PrescriptionDetailPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [leftEnable, setLeftEnable] = useState(false);
   const [rightEnable, setRightEnable] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
+    if (DataArray.length === 0) {
+      alert('의약품 정보를 불러오지 못했습니다.');
+      navigate('/prescription');
+    }
     if (DataArray[currentIndex] != null) {
       setDetailData(DataArray[currentIndex]);
     }
     setLeftEnable(!(currentIndex === 0));
     setRightEnable(currentIndex < DataArray.length - 1);
-  }, [currentIndex, DataArray, setDetailData]);
+  }, [currentIndex, DataArray, setDetailData, navigate]);
 
   const handleLeftButton = () => {
     if (currentIndex === 0) {

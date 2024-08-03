@@ -70,6 +70,20 @@ const PrescriptionPage = () => {
           setButtonDisabled(false);
           setMedCode(result);
           console.log(result);
+          setPresData([
+            {
+              itemSeq: 202200407,
+              itemName: 'Default Information',
+              atpnQesitm: '',
+              efcyQesitm: '',
+              useMethodQesitm: '',
+              intrcQesitm: '',
+              seQesitm: '',
+              depositMethodQesitm: '',
+              itemImage:
+                'https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN',
+            },
+          ]); // Recoil 상태 초기화
         });
       } catch (e) {
         console.log(e);
