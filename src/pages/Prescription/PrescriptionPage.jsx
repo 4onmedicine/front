@@ -86,6 +86,10 @@ const PrescriptionPage = () => {
     //   data: medCode,
     // };
     const fetchData = async () => {
+      if (medCode.length === 0) {
+        alert('이미지 인식에 실패하였습니다.');
+        return;
+      }
       try {
         console.log(medCode);
         const res = await fetch(
@@ -104,7 +108,9 @@ const PrescriptionPage = () => {
           console.log(result.filter((element) => element !== null));
           if (presDataArray.length === 0) {
             alert('데이터 인식에 실패했습니다.');
+            setLoading(false);
             navigate('/');
+            return;
           }
           setLoading(false);
           navigate('/prescription_detail/instruction');
