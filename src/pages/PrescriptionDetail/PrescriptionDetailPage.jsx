@@ -18,7 +18,9 @@ const PrescriptionDetailPage = () => {
   const [leftEnable, setLeftEnable] = useState(false);
   const [rightEnable, setRightEnable] = useState(false);
   useEffect(() => {
-    setDetailData(DataArray[currentIndex]);
+    if (DataArray[currentIndex] != null) {
+      setDetailData(DataArray[currentIndex]);
+    }
     setLeftEnable(!(currentIndex === 0));
     setRightEnable(currentIndex < DataArray.length - 1);
   }, [currentIndex, DataArray, setDetailData]);

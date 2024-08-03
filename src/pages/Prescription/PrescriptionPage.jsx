@@ -10,7 +10,7 @@ import MainLogoSvg from '../../assets/MainLogo.svg';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { presDataArrayState } from '../../atoms/atom';
+import { detailDataState, presDataArrayState } from '../../atoms/atom';
 
 const PrescriptionPage = () => {
   const [uploadedInfo, setUploadedInfo] = useState(null); // 업로드한 파일 이름
@@ -22,6 +22,7 @@ const PrescriptionPage = () => {
   const [medCode, setMedCode] = useState([]); // 이미지 POST 후 받아온 약 보험코드 array
   const setPresData = useSetRecoilState(presDataArrayState); // 보험코드 array POST 후 받아온 약 정보 array를 Recoil State로 저장
   const presDataArray = useRecoilValue(presDataArrayState);
+  const setDetailData = useSetRecoilState(detailDataState);
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -98,8 +99,10 @@ const PrescriptionPage = () => {
             body: JSON.stringify(medCode),
           }
         );
-        let data = await res.json();
-        setPresData(data.filter((element) => element != null));
+        let data = await res.json().then((result) => {
+          setPresData(result.filter((element) => element !== null));
+        });
+        //setPresData(data.filter((element) => element != null));
         //setPresData(res.json().filter((element) => element != null)); // 백엔드에서 json에 key랑 value 매핑해서 주도록 말하기
         console.log(data);
       } catch (e) {
@@ -107,8 +110,8 @@ const PrescriptionPage = () => {
         return;
       } finally {
         for (let element in presDataArray) {
-          if (element == null) {
-            setPresData(presDataArray.splice(presDataArray.indexOf(null), 1));
+          if (element != null) {
+            setDetailData(element);
           }
         }
         setLoading(false);
