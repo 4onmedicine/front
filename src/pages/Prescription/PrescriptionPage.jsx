@@ -65,7 +65,9 @@ const PrescriptionPage = () => {
             body: formData,
           }
         );
-        const data = await res.json();
+        const data = await res.json().then(() => {
+          setButtonDisabled(false);
+        });
         setMedCode(data);
       } catch (e) {
         console.log(e);
@@ -73,7 +75,6 @@ const PrescriptionPage = () => {
       }
     };
     fetchData();
-    setButtonDisabled(false);
   }, [targetImage]); // onChange 이벤트로 파일 업로드시 imageUrl State를 업데이트하므로 이를 감지해 서버에 이미지 링크 전달
 
   const handleSubmit = () => {
@@ -109,10 +110,10 @@ const PrescriptionPage = () => {
             setPresData(presDataArray.splice(presDataArray.indexOf(null), 1));
           }
         }
+        setLoading(false);
       }
     };
     fetchData();
-    setLoading(false);
     navigate('/prescription_detail/instruction');
   };
 
