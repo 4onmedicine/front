@@ -34,7 +34,10 @@ const ChatAreaComponent = () => {
             body: JSON.stringify({ message: texts }),
           });
           const data = await res.json().then((result) => {
-            setMessages([...newMessages, { type: 'server', text: result }]);
+            setMessages([
+              ...newMessages,
+              { type: 'server', text: result.response },
+            ]);
             setIsLoading(false);
           });
         } catch (e) {
