@@ -127,7 +127,6 @@ const PrescriptionPage = () => {
             return;
           }
           setLoading(false);
-          navigate('/prescription_detail/instruction');
         });
         //setPresData(data.filter((element) => element != null));
         //setPresData(res.json().filter((element) => element != null)); // 백엔드에서 json에 key랑 value 매핑해서 주도록 말하기
@@ -136,7 +135,7 @@ const PrescriptionPage = () => {
         return;
       }
     };
-    fetchData();
+    fetchData().then(() => navigate('/prescription_detail'));
   };
 
   const handleFileUpload = (e) => {

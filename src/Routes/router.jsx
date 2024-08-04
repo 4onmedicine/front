@@ -40,13 +40,6 @@ const router = [
       {
         path: '/prescription_detail',
         element: <PrescriptionDetailPage />,
-        children: [
-          { path: 'instruction', element: <Instruction /> },
-          { path: 'caution', element: <Caution /> },
-          { path: 'interaction', element: <Interaction /> },
-          { path: 'sideeffects', element: <SideEffects /> },
-          { path: 'storage', element: <Storage /> },
-        ],
       },
       {
         path: '/testdetail',
