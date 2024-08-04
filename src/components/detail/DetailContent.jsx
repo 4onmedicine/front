@@ -10,6 +10,7 @@ const DetailContent = () => {
   useEffect(() => {
     if (itemName.indexOf('(') === -1) {
       setPillName(itemName);
+      setPillSubName('');
       return;
     }
     setPillName(itemName.split('(')[0]);
