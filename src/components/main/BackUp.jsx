@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
 
 const ChatAreaComponent = () => {
-  const [texts, setTexts] = useState('');
+  const [texts, setTexts] = useState("");
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const ref = useRef();
@@ -10,31 +10,31 @@ const ChatAreaComponent = () => {
   const inputAreaRef = useRef();
 
   const handleResizeHeight = (e) => {
-    ref.current.style.height = 'auto';
+    ref.current.style.height = "auto";
     ref.current.style.height = `${Math.min(ref.current.scrollHeight, 100)}px`; // 100px는 대략 5줄 높이
     const { value } = e.target;
     setTexts(value);
   };
 
   const onSubmit = () => {
-    if (texts.trim() !== '') {
+    if (texts.trim() !== "") {
       setIsLoading(true);
-      const newMessages = [...messages, { type: 'user', text: texts }];
+      const newMessages = [...messages, { type: "user", text: texts }];
       setMessages(newMessages);
-      setTexts('');
-      ref.current.style.height = 'auto'; // 초기화 후 textarea 높이도 초기화
+      setTexts("");
+      ref.current.style.height = "auto"; // 초기화 후 textarea 높이도 초기화
 
       // Mock 서버 응답
       setTimeout(() => {
-        const mockReply = 'This is a mock reply from the server.';
-        setMessages([...newMessages, { type: 'server', text: mockReply }]);
+        const mockReply = "This is a mock reply from the server.";
+        setMessages([...newMessages, { type: "server", text: mockReply }]);
         setIsLoading(false);
       }, 500);
     }
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       // 엔터키 기본 동작인 줄바꿈을 방지
       e.preventDefault();
       if (!isLoading) {
@@ -58,7 +58,7 @@ const ChatAreaComponent = () => {
           <p>hi</p>
           <ChatContentArea ref={chatContentRef}>
             {messages.map((message, index) => (
-              <ChatMessage key={index} isUser={message.type === 'user'}>
+              <ChatMessage key={index} isUser={message.type === "user"}>
                 {message.text}
               </ChatMessage>
             ))}
@@ -72,7 +72,7 @@ const ChatAreaComponent = () => {
             onKeyPress={handleKeyPress}
             value={texts}
             disabled={isLoading} // 서버 응답 대기 중에는 비활성화
-            placeholder='메세지 챗GPT'
+            placeholder="메세지 챗GPT"
           />
         </InputArea>
       </ChatArea>
@@ -139,7 +139,7 @@ const ChatMessage = styled.div`
   word-wrap: break-word;
   width: 300px;
   align-self: flex-end;
-  background-color: ${(props) => (props.isUser ? '#e6e6e9' : '#f4f4f6')};
+  background-color: ${(props) => (props.isUser ? "#e6e6e9" : "#f4f4f6")};
 `;
 
 const InputArea = styled.div`
@@ -149,7 +149,7 @@ const InputArea = styled.div`
   justify-content: center;
   width: 700px;
   background-color: #2cad66;
-  z-index: 999;
+  z-index: 700;
   border-radius: 10px;
   padding: 3px 10px 3px 10px;
   overflow: visible;
@@ -164,7 +164,7 @@ const InputArea = styled.div`
 
 const InputTextarea = styled.textarea`
   border: none;
-  font-family: 'gmarket-medium';
+  font-family: "gmarket-medium";
   font-size: 18px;
   width: 690px;
   max-height: 90px; /* 최대 높이를 5줄로 제한 (약 100px) */

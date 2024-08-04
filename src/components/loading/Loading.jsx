@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import spin from '../../assets/spin.gif';
+import styled from "styled-components";
+import spin from "../../assets/spin.gif";
 
 const Loading = () => {
   return (
@@ -19,7 +19,7 @@ const LoadingBackground = styled.div`
   top: 0;
   left: 0;
   background: #ffffffb7;
-  z-index: 999;
+  z-index: 700;
   display: flex;
   flex-direction: column;
   align-items: center;

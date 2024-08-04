@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import DropContainer from '../../components/main/DropContainer';
-import { MainSearch } from '../../components/main/MainSearch';
-import MainLogoSvg from '../../assets/MainLogo.svg';
-import ChatAreaComponent from '../../components/main/ChatAreaComponent'; // 경로는 실제 파일 위치에 맞게 조정
-import { FaSearch } from 'react-icons/fa';
+import React, { useState } from "react";
+import styled from "styled-components";
+import DropContainer from "../../components/main/DropContainer";
+import { MainSearch } from "../../components/main/MainSearch";
+import MainLogoSvg from "../../assets/MainLogo.svg";
+import ChatAreaComponent from "../../components/main/ChatAreaComponent"; // 경로는 실제 파일 위치에 맞게 조정
+import { FaSearch } from "react-icons/fa";
 
 const MainPage = () => {
-  const [selectedOption, setSelectedOption] = useState('카테고리');
+  const [selectedOption, setSelectedOption] = useState("카테고리");
   return (
     <MainContainer>
       <ContentsContainer>
@@ -27,12 +27,9 @@ const MainPage = () => {
             </SearchInputArea>
           </SearchDiv>
           <SearchBtnDiv>
-            <SearchIcon size='23' />
+            <SearchIcon size="23" />
           </SearchBtnDiv>
         </SearchContainer>
-        <SubContentsArea>
-          <ChatAreaComponent /> {/* 새로운 ChatAreaComponent 사용 */}
-        </SubContentsArea>
       </ContentsContainer>
     </MainContainer>
   );
@@ -41,9 +38,9 @@ const MainPage = () => {
 export default MainPage;
 
 export const MainContainer = styled.div`
-  margin: 0 auto;
   position: relative;
   width: 1080px;
+  margin: 0 auto;
   background-color: white;
 `;
 
@@ -87,9 +84,7 @@ const SearchDiv = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-
   border-radius: 50px 0px 0px 50px;
-
   border: 4px solid;
   border-color: ${({ theme }) => theme.COLOR.GREEN};
   background-color: white;
