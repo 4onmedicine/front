@@ -5,8 +5,6 @@ import NavIconSvg from "../assets/NavLogo.svg";
 import NavCursorSvg from "../assets/NavCursor.svg";
 import "../App.css";
 
-// 스타일만 적용해둔 거라 hover 스타일 적용, focus 스타일 적용 등은 빠른 시일 내에 마저 작업해서 올리겠습니다.
-
 const Navbar = () => {
   const navigate = useNavigate();
   return (
@@ -62,22 +60,23 @@ const NavIcon = styled.img`
   cursor: pointer;
 `;
 
-const NavButton = styled.button`
-  background-color: ${({ theme }) => theme.COLOR.GREEN};
+const NavButton = styled.div`
   border: none;
   font-family: BitBit;
   font-size: 20px;
   color: white;
-  cursor: pointer;
 `;
 
 const NavButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: ${({ theme }) => theme.COLOR.GREEN};
+  cursor: pointer;
 `;
 
 const NavCursorIcon = styled.img`
   width: 20px;
   height: auto;
+  margin-top: 5px;
 `;

@@ -44,15 +44,17 @@ const Input = styled.input`
   font-size: 16px;
   box-sizing: border-box;
   border: none;
+  font-family: BitBit;
   &:focus {
     outline: none;
   }
+  color: #646464;
   &:disabled {
     cursor: not-allowed;
     background-color: white;
-    /* &:hover {
-      border: 2px solid red;
-    } */
+  }
+  &::placeholder {
+    color: #a9a9a9;
   }
 `;
 

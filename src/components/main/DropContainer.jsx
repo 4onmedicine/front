@@ -39,10 +39,11 @@ const DropContainer = ({ selectedOption, setSelectedOption }) => {
 export default DropContainer;
 
 const Container = styled.div`
+  position: relative;
   box-sizing: border-box;
   height: 25px;
-  /* display: flex;
-  align-items: center; */
+  display: flex;
+  align-items: center;
 `;
 
 const DropdownLabel = styled.label`
@@ -67,7 +68,8 @@ const DropdownButton = styled.button`
 
 const MenuSpan = styled.span`
   margin-right: auto;
-  font-family: gmarket-medium;
+  font-family: BitBit;
+  color: #5a5a5a;
 `;
 
 const ArrowSpan = styled.span``;

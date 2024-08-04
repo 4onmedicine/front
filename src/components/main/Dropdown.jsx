@@ -17,20 +17,27 @@ Dropdown.propTypes = {
 export default Dropdown;
 
 const DropdownUl = styled.ul`
-  position: relative;
-  margin-top: 20px;
-  margin-left: 10px;
+  position: absolute;
+  top: 40px; /* Adjust this value to ensure the dropdown appears below the button */
+  left: 0;
+  margin-top: 5px;
+  background-color: white;
+  border: 4px solid ${({ theme }) => theme.COLOR.GREEN};
+  border-radius: 10px;
 `;
 
 const DropdownLi = styled.li`
   box-sizing: border-box;
-  height: 30px;
+  width: 150px;
+  height: 35px;
   font-size: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
   text-align: center;
-  border: 1px solid;
+  font-family: BitBit;
+  font-weight: 100;
+  color: #5a5a5a;
   &:hover {
-    background-color: #5d5d5d;
+    background-color: #bebebe;
   }
 `;
