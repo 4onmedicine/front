@@ -60,7 +60,12 @@ const InfoTitle = styled.p`
   padding: 5px 0 5px 10px;
   background-color: ${({ theme }) => theme.COLOR.LIGHTGREEN};
   font-family: BitBit;
+  font-size: 20px;
 `;
 const InfoDetail = styled.p`
   color: black;
+  font-size: 18px;
+  font-family: GmarketSans;
+  font-weight: 300;
+  line-height: 1.35;
 `;

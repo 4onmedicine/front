@@ -22,15 +22,27 @@ const ChatAreaComponent = () => {
       setIsLoading(true);
       const newMessages = [...messages, { type: 'user', text: texts }];
       setMessages(newMessages);
-      setTexts('');
       ref.current.style.height = 'auto'; // 초기화 후 textarea 높이도 초기화
-
-      // Mock 서버 응답
-      setTimeout(() => {
-        const mockReply = 'This is a mock reply from the server.';
-        setMessages([...newMessages, { type: 'server', text: mockReply }]);
-        setIsLoading(false);
-      }, 500);
+      const fetchData = async () => {
+        try {
+          const res = await fetch(import.meta.env.VITE_BACKEND_URL + `/chat`, {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: texts }),
+          });
+          const data = await res.json().then((result) => {
+            setMessages([...newMessages, { type: 'server', text: result }]);
+            setIsLoading(false);
+          });
+        } catch (e) {
+          console.log(e);
+        }
+      };
+      fetchData();
+      setTexts('');
     }
   };
 

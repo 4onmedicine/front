@@ -54,7 +54,7 @@ export const DetailContainer = styled.div`
   ${FlexColumnCSS};
   position: relative;
   width: 100%;
-  background-color: #bdbdbd;
+  background-color: white;
   align-items: center;
   justify-content: center;
   padding-top: 50px;
@@ -65,6 +65,9 @@ export const DetailWrapper = styled.div`
   border-radius: 10px;
   width: 100%;
   max-width: 900px;
+  @media only screen and (min-width: 1600px) {
+    max-width: 1500px;
+  }
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 1px 10px rgba(0, 0, 0, 0.22);
   height: calc(100vh - 250px);
   background-color: white;

@@ -44,6 +44,7 @@ export const MainContainer = styled.div`
   margin: 0 auto;
   position: relative;
   width: 1080px;
+  background-color: white;
 `;
 
 export const MainLogo = styled.img`

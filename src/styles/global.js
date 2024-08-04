@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
     @font-face {
@@ -100,12 +100,12 @@ const GlobalStyles = createGlobalStyle`
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #fffaf0;
+        background-color: white;
     }
 
     #root {
         width: 100vw;
-        background-color: #c0c0c0;
+        background-color: white;
     }
 `;
 

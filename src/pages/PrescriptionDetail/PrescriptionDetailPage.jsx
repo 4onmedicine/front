@@ -92,10 +92,16 @@ const Left = styled(FaAngleLeft)`
   position: absolute;
   left: calc(50vw - 500px);
   top: calc(100vh - 500px);
+  @media only screen and (min-width: 1600px) {
+    left: calc(50vw - 800px);
+  }
 `;
 
 const Right = styled(FaAngleRight)`
   position: absolute;
   right: calc(50vw - 500px);
   top: calc(100vh - 500px);
+  @media only screen and (min-width: 1600px) {
+    right: calc(50vw - 800px);
+  }
 `;

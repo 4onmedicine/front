@@ -11,6 +11,7 @@ import Loading from '../components/Loading';
 import PrescriptionPage from '../pages/Prescription/PrescriptionPage';
 import ChatPage from '../pages/Chat/ChatPage';
 import PrescriptionDetailPage from '../pages/PrescriptionDetail/PrescriptionDetailPage';
+import DetailTestPage from '../pages/DetailTestPage';
 
 const router = [
   {
@@ -46,6 +47,10 @@ const router = [
           { path: 'sideeffects', element: <SideEffects /> },
           { path: 'storage', element: <Storage /> },
         ],
+      },
+      {
+        path: '/testdetail',
+        element: <DetailTestPage />,
       },
       {
         path: '/chat',

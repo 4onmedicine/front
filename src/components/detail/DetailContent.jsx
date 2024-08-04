@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { detailDataState } from '../../atoms/atom';
 
 const DetailContent = () => {
   const { itemImage, itemName } = useRecoilValue(detailDataState);
+  const [pillName, setPillName] = useState('');
+  const [pillSubName, setPillSubName] = useState('');
+  useEffect(() => {
+    setPillName(itemName.split('(')[0]);
+    setPillSubName(itemName.split('(')[1].split(')')[0]);
+  }, [itemName]);
   return (
     <DetailContentContainer>
       <Contents>
@@ -12,7 +18,8 @@ const DetailContent = () => {
           <PillImage src={itemImage} alt='알약 이미지' />
         </ImgArea>
         <TextArea>
-          <MedicineTitle>{itemName}</MedicineTitle>
+          <MedicineTitle>{pillName}</MedicineTitle>
+          <MedicineSubTitle>{pillSubName}</MedicineSubTitle>
         </TextArea>
       </Contents>
     </DetailContentContainer>
@@ -49,6 +56,10 @@ const ImgArea = styled.div`
   margin-left: 15px;
   width: 330px;
   height: 330px;
+  @media only screen and (min-width: 1600px) {
+    width: 500px;
+    height: 500px;
+  }
 `;
 
 const TextArea = styled.div`
@@ -59,10 +70,19 @@ const TextArea = styled.div`
   max-width: 330px;
 `;
 
-const MedicineTitle = styled.h1`
-  font-size: 30px;
-  margin: 30px 0;
+const MedicineTitle = styled.p`
+  font-size: 28px;
+  margin-top: 30px;
   padding-left: 5px;
+  font-family: GmarketSans;
+  font-weight: 500;
+`;
+const MedicineSubTitle = styled.p`
+  font-size: 16px;
+  padding-left: 5px;
+  margin-top: 10px;
+  font-family: GmarketSans;
+  font-weight: 400;
 `;
 
 // const MedicineEfficacy = styled.div`
