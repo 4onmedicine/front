@@ -43,7 +43,7 @@ const MainSearchResults = ({ medicines = [], searching }) => {
   return (
     <SearchResultsContainer>
       {searching ? (
-        <div>검색 중...</div>
+        <Div>검색 중...</Div>
       ) : medicines.length > 0 ? (
         <ul>
           {medicines.map(({ itemName }, index) => (
@@ -59,7 +59,7 @@ const MainSearchResults = ({ medicines = [], searching }) => {
           ))}
         </ul>
       ) : (
-        <div>결과가 없습니다.</div>
+        <Div>결과가 없습니다...</Div>
       )}
     </SearchResultsContainer>
   );
@@ -74,10 +74,12 @@ const SearchResultsContainer = styled.div`
   width: 100%;
   background-color: white;
   z-index: 3;
-  border: 1px solid #ddd;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
   max-height: 400px;
   overflow-y: auto;
+  border: 4px solid ${({ theme }) => theme.COLOR.GREEN};
+  border-radius: 20px;
+  box-sizing: border-box;
 `;
 
 const MedicineLi = styled.li.attrs((props) => ({
@@ -85,9 +87,16 @@ const MedicineLi = styled.li.attrs((props) => ({
 }))`
   list-style-type: none;
   padding: 10px;
+  font-family: BitBit;
   background-color: ${(props) => (props.$isFocused ? "#e0e0e0" : "white")};
+  border-radius: 20px;
   cursor: pointer;
   &:hover {
     background-color: #e0e0e0;
   }
+`;
+
+const Div = styled.div`
+  font-size: 15px;
+  font-family: BitBit;
 `;

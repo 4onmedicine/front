@@ -50,7 +50,6 @@ const ChatButton = styled.div`
   color: white;
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.COLOR.BORDERGREEN};
-    color: black;
+    background-color: #6dd66d;
   }
 `;

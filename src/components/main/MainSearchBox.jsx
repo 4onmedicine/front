@@ -13,6 +13,10 @@ const MainSearchBox = ({ value, onChange, selectedOption }) => {
     }
   };
 
+  const handleMouseLeave = () => {
+    setShowWarning(false);
+  };
+
   useEffect(() => {
     if (selectedOption !== "카테고리") {
       setShowWarning(false);
@@ -20,7 +24,7 @@ const MainSearchBox = ({ value, onChange, selectedOption }) => {
   }, [selectedOption]);
 
   return (
-    <Wrapper onMouseEnter={handleMouseHover}>
+    <Wrapper onMouseEnter={handleMouseHover} onMouseLeave={handleMouseLeave}>
       <Input
         type="text"
         value={value}

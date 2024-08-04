@@ -67,12 +67,19 @@ const NavButton = styled.div`
   color: white;
 `;
 
-const NavButtonWrapper = styled.div`
+const NavButtonWrapper = styled.button`
+  border: none;
+  border-radius: 5px;
   display: flex;
+  padding: 5px;
   flex-direction: column;
   align-items: center;
   background-color: ${({ theme }) => theme.COLOR.GREEN};
+  height: fit-content;
   cursor: pointer;
+  &:hover {
+    background-color: #6dd66d;
+  }
 `;
 
 const NavCursorIcon = styled.img`
