@@ -8,6 +8,10 @@ const DetailContent = () => {
   const [pillName, setPillName] = useState('');
   const [pillSubName, setPillSubName] = useState('');
   useEffect(() => {
+    if (itemName.indexOf('(') === -1) {
+      setPillName(itemName);
+      return;
+    }
     setPillName(itemName.split('(')[0]);
     setPillSubName(itemName.split('(')[1].split(')')[0]);
   }, [itemName]);
