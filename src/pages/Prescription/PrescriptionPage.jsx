@@ -148,31 +148,6 @@ const PrescriptionPage = () => {
       //console.log(reader.result);
       setImageUrl(reader.result);
     };
-    /*
-    try {
-      const formData = new FormData();
-      formData.append('image', e.target.files[0]);
-      console.log(formData);
-
-      const res = await fetch(
-        import.meta.env.VITE_BACKEND_URL + `/send-image`,
-        {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'multipart/form-data',
-          },
-          body: formData,
-        }
-      );
-      setMedCode(res.json());
-    } catch (e) {
-      console.log(e);
-      return;
-    } finally {
-      setButtonDisabled(false);
-    }
-      */
   };
 
   return (

@@ -185,9 +185,10 @@ const ChatMessage = styled.div`
   align-self: ${(props) => (props.isUser ? "flex-end" : "flex-start")};
   border: 1px solid ${(props) => (props.isUser ? "#75d3a0" : "none")};
   color: ${(props) => (props.isUser ? "black" : "white")};
-  padding: 15px 0 15px 15px;
+  padding: 15px;
   font-size: 14px;
   margin: 0 5px 0 5px;
+  line-height: 150%;
 `;
 
 const InputArea = styled.div`
