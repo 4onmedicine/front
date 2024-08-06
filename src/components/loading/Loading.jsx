@@ -1,16 +1,23 @@
+// Loading.jsx
 import styled from 'styled-components';
 import spin from '../../assets/spin.gif';
+import MainLogoSvg from '../../assets/MainLogo.svg';
 
 const Loading = ({ text }) => {
   return (
     <LoadingBackground>
-      <LoadingText>{text}</LoadingText>
+      <MainLogo src={MainLogoSvg} />
       <img src={spin} />
+      <LoadingText>{text}</LoadingText>
     </LoadingBackground>
   );
 };
 
 export default Loading;
+
+const MainLogo = styled.img`
+  width: 300px;
+`;
 
 const LoadingBackground = styled.div`
   position: absolute;
@@ -27,4 +34,6 @@ const LoadingBackground = styled.div`
 `;
 const LoadingText = styled.div`
   text-align: center;
+  font-family: BitBit;
+  font-size: 25px;
 `;
