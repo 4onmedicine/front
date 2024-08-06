@@ -15,27 +15,31 @@ const DetailInfo = () => {
     <InfoContainer>
       <InfoWrapper>
         <InfoTitle>효능</InfoTitle>
-        <InfoDetail>{efcyQesitm}</InfoDetail>
+        <InfoDetail>{efcyQesitm.length !== 0 ? efcyQesitm : '.'}</InfoDetail>
       </InfoWrapper>
       <InfoWrapper>
         <InfoTitle>사용법</InfoTitle>
-        <InfoDetail>{useMethodQesitm}</InfoDetail>
+        <InfoDetail>
+          {useMethodQesitm.length !== 0 ? useMethodQesitm : '.'}
+        </InfoDetail>
       </InfoWrapper>
       <InfoWrapper>
         <InfoTitle>주의사항</InfoTitle>
-        <InfoDetail>{atpnQesitm}</InfoDetail>
+        <InfoDetail>{atpnQesitm.length !== 0 ? atpnQesitm : '.'}</InfoDetail>
       </InfoWrapper>
       <InfoWrapper>
         <InfoTitle>상호작용</InfoTitle>
-        <InfoDetail>{intrcQesitm}</InfoDetail>
+        <InfoDetail>{intrcQesitm.length !== 0 ? intrcQesitm : '.'}</InfoDetail>
       </InfoWrapper>
       <InfoWrapper>
         <InfoTitle>부작용</InfoTitle>
-        <InfoDetail>{seQesitm}</InfoDetail>
+        <InfoDetail>{seQesitm.length !== 0 ? seQesitm : '.'}</InfoDetail>
       </InfoWrapper>
       <InfoWrapper>
         <InfoTitle>보관방법</InfoTitle>
-        <InfoDetail>{depositMethodQesitm}</InfoDetail>
+        <InfoDetail>
+          {depositMethodQesitm.length !== 0 ? depositMethodQesitm : '.'}
+        </InfoDetail>
       </InfoWrapper>
     </InfoContainer>
   );
