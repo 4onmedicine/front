@@ -1,19 +1,19 @@
-import React from "react";
-import styled from "styled-components";
-import MainLogoSvg from "../assets/MainLogo.svg";
+import React from 'react';
+import styled from 'styled-components';
+import MainLogoSvg from '../assets/MainLogo.svg';
 
-const Loading = () => {
+const oldLoading = () => {
   return (
     <LoadingContainer>
       <LoadingTitle>잠시만 기다려주세요</LoadingTitle>
       <LogoContainer>
-        <MainLogo src={MainLogoSvg} alt="메인로고" />
+        <MainLogo src={MainLogoSvg} alt='메인로고' />
       </LogoContainer>
     </LoadingContainer>
   );
 };
 
-export default Loading;
+export default oldLoading;
 
 const LoadingContainer = styled.div`
   display: flex;

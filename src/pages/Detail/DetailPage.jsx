@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FlexColumnCSS } from '../../styles/common';
 import DetailNav from '../../components/detail/DetailNav';
@@ -8,6 +8,7 @@ import { detailDataState } from '../../atoms/atom';
 import DetailContent from '../../components/detail/DetailContent';
 import useGetDetail from '../../query/get/useGetDetail';
 import DetailInfo from '../../components/detail/DetailInfo';
+import Loading from '../../components/loading/Loading';
 
 const DetailPage = () => {
   const setDetailData = useSetRecoilState(detailDataState);
@@ -21,7 +22,7 @@ const DetailPage = () => {
   }, [FetchedData, setDetailData]);
 
   if (loading) {
-    return <div>로딩중이야...</div>;
+    return <Loading text={'의약품 정보 가져오는 중'} />;
   }
 
   if (error) {

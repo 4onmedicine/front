@@ -1,20 +1,20 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   MainContainer,
   MainLogo,
   ContentsContainer,
   LogoDiv,
-} from "../main/Mainpage";
-import Loading from "../../components/loading/Loading";
-import MainLogoSvg from "../../assets/MainLogo.svg";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { detailDataState, presDataArrayState } from "../../atoms/atom";
+} from '../main/Mainpage';
+import Loading from '../../components/loading/Loading';
+import MainLogoSvg from '../../assets/MainLogo.svg';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { detailDataState, presDataArrayState } from '../../atoms/atom';
 
 const PrescriptionPage = () => {
   const [uploadedInfo, setUploadedInfo] = useState(null); // 업로드한 파일 이름
-  const [imageUrl, setImageUrl] = useState(""); // 이미지 url
+  const [imageUrl, setImageUrl] = useState(''); // 이미지 url
   const [targetImage, setTargetImage] = useState(null); // 이미지 저장 state
   const [buttonDisabled, setButtonDisabled] = useState(true); // 처방전 업로드 버튼 비활성화 여부
   const [loading, setLoading] = useState(false); // 로딩 화면 출력 여부
@@ -50,7 +50,7 @@ const PrescriptionPage = () => {
     }
     setButtonDisabled(true);
     const formData = new FormData();
-    formData.append("image", targetImage);
+    formData.append('image', targetImage);
     console.log(targetImage);
     // 이미지 업로드되자마자 서버에 보내서 약 코드 받아오기
     const fetchData = async () => {
@@ -58,7 +58,7 @@ const PrescriptionPage = () => {
         const res = await fetch(
           import.meta.env.VITE_BACKEND_URL + `/send-image`,
           {
-            method: "POST",
+            method: 'POST',
             // headers: {
             //   Accept: 'application/json',
             //   'Content-Type': 'multipart/form-data',
@@ -73,15 +73,15 @@ const PrescriptionPage = () => {
           setPresData([
             {
               itemSeq: 202200407,
-              itemName: "Default Information",
-              atpnQesitm: "",
-              efcyQesitm: "",
-              useMethodQesitm: "",
-              intrcQesitm: "",
-              seQesitm: "",
-              depositMethodQesitm: "",
+              itemName: 'Default Information',
+              atpnQesitm: '',
+              efcyQesitm: '',
+              useMethodQesitm: '',
+              intrcQesitm: '',
+              seQesitm: '',
+              depositMethodQesitm: '',
               itemImage:
-                "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN",
+                'https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1OKRXo9l4DN',
             },
           ]); // Recoil 상태 초기화
         });
@@ -101,7 +101,7 @@ const PrescriptionPage = () => {
     // };
     const fetchData = async () => {
       if (medCode.length === 0) {
-        alert("이미지 인식에 실패하였습니다.");
+        alert('이미지 인식에 실패하였습니다.');
         return;
       }
       try {
@@ -109,10 +109,10 @@ const PrescriptionPage = () => {
         const res = await fetch(
           import.meta.env.VITE_BACKEND_URL + `/receive-data`,
           {
-            method: "POST",
+            method: 'POST',
             headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
             },
             body: JSON.stringify(medCode),
           }
@@ -121,9 +121,9 @@ const PrescriptionPage = () => {
           setPresData(result.filter((element) => element !== null));
           console.log(result.filter((element) => element !== null));
           if (presDataArray.length === 0) {
-            alert("데이터 인식에 실패했습니다.");
+            alert('데이터 인식에 실패했습니다.');
             setLoading(false);
-            navigate("/");
+            navigate('/');
             return;
           }
           setLoading(false);
@@ -135,7 +135,7 @@ const PrescriptionPage = () => {
         return;
       }
     };
-    fetchData().then(() => navigate("/prescription_detail"));
+    fetchData().then(() => navigate('/prescription_detail'));
   };
 
   const handleFileUpload = (e) => {
@@ -178,7 +178,7 @@ const PrescriptionPage = () => {
   return (
     <>
       {loading ? (
-        <Loading />
+        <Loading text={'처방전 정보 받아오는 중'} />
       ) : (
         <MainContainer>
           <ContentsContainer>
@@ -192,8 +192,8 @@ const PrescriptionPage = () => {
               onDrop={handleDrop}
             >
               <UploadInput
-                type="file"
-                accept="image/*"
+                type='file'
+                accept='image/*'
                 onChange={handleFileUpload}
               />
               {uploadedInfo ? (

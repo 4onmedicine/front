@@ -1,10 +1,10 @@
-import styled from "styled-components";
-import spin from "../../assets/spin.gif";
+import styled from 'styled-components';
+import spin from '../../assets/spin.gif';
 
-const Loading = () => {
+const Loading = ({ text }) => {
   return (
     <LoadingBackground>
-      <LoadingText>처방전 정보 가져오는 중</LoadingText>
+      <LoadingText>{text}</LoadingText>
       <img src={spin} />
     </LoadingBackground>
   );
