@@ -1,34 +1,12 @@
-import { useEffect, useState } from 'react';
-
-const ImageApi = {
-  postImage: async (url) => {
-    const reqBody = {
-      image: url,
-    };
-    const response = await fetch(
-      import.meta.env.VITE_BACKEND_URL + `/send-image`,
-      {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(reqBody),
-      }
-    );
-    if (response.status != 200) {
-      throw new Error(`Error Posting Image! status: ${response.status}`);
-    }
-    return response.json();
-  },
-};
+import { useEffect, useState } from "react";
+import { ImageApi } from "../../apis/ImageApi";
 
 const usePostImage = (url) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (!url) {
-      console.log('이미지 url 미입력');
+      console.log("이미지 url 미입력");
       return;
     }
     const fetchData = async () => {

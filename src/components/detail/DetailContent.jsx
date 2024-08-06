@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import styled from 'styled-components';
-import { detailDataState } from '../../atoms/atom';
+import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import styled from "styled-components";
+import { detailDataState } from "../../atoms/atom";
 
 const DetailContent = () => {
   const { itemImage, itemName } = useRecoilValue(detailDataState);
-  const [pillName, setPillName] = useState('');
-  const [pillSubName, setPillSubName] = useState('');
+  const [pillName, setPillName] = useState("");
+  const [pillSubName, setPillSubName] = useState("");
   useEffect(() => {
-    if (itemName.indexOf('(') === -1) {
+    if (itemName.indexOf("(") === -1) {
       setPillName(itemName);
-      setPillSubName('');
+      setPillSubName("");
       return;
     }
-    setPillName(itemName.split('(')[0]);
-    setPillSubName(itemName.split('(')[1].split(')')[0]);
+    setPillName(itemName.split("(")[0]);
+    setPillSubName(itemName.split("(")[1].split(")")[0]);
   }, [itemName]);
   return (
     <DetailContentContainer>
       <Contents>
         <ImgArea>
-          <PillImage src={itemImage} alt='알약 이미지' />
+          <PillImage src={itemImage} alt="알약 이미지" />
         </ImgArea>
         <TextArea>
           <MedicineTitle>{pillName}</MedicineTitle>
@@ -89,10 +89,6 @@ const MedicineSubTitle = styled.p`
   font-family: GmarketSans;
   font-weight: 400;
 `;
-
-// const MedicineEfficacy = styled.div`
-//   padding: 5px;
-// `;
 
 const PillImage = styled.img`
   width: 100%;
