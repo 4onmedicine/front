@@ -1,18 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FlexColumnCSS } from '../../styles/common';
-import DetailNav from '../../components/detail/DetailNav';
-import { Outlet, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { detailDataState } from '../../atoms/atom';
 import DetailContent from '../../components/detail/DetailContent';
 import useGetDetail from '../../query/get/useGetDetail';
 import DetailInfo from '../../components/detail/DetailInfo';
+import Loading from '../../components/loading/Loading';
 
 const DetailPage = () => {
   const setDetailData = useSetRecoilState(detailDataState);
   const { id } = useParams();
   const { data: FetchedData, error, loading } = useGetDetail(id);
+  const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (FetchedData) {
@@ -20,31 +22,30 @@ const DetailPage = () => {
     }
   }, [FetchedData, setDetailData]);
 
-  if (loading) {
-    return <div>로딩중이야...</div>;
+  if (!loading) {
+    setIsLoading(false);
   }
 
   if (error) {
-    return <div>Error fetching data</div>;
+    alert('의약품 정보를 가져오는 중 오류가 발생했습니다.');
+    navigate('/');
   }
 
   return (
-    <DetailContainer>
-      <DetailWrapper>
-        <DetailMain>
-          <DetailContent />
-        </DetailMain>
-        {/*
-        <DetailNavContainer>
-          <DetailNav />
-        </DetailNavContainer>
-        <DetailSub>
-          <Outlet />
-        </DetailSub>
-        */}
-        <DetailInfo />
-      </DetailWrapper>
-    </DetailContainer>
+    <>
+      {isLoading ? (
+        <Loading text={'의약품 정보 가져오는 중'} />
+      ) : (
+        <DetailContainer>
+          <DetailWrapper>
+            <DetailMain>
+              <DetailContent />
+            </DetailMain>
+            <DetailInfo />
+          </DetailWrapper>
+        </DetailContainer>
+      )}
+    </>
   );
 };
 
@@ -84,7 +85,6 @@ export const DetailMain = styled.div`
 `;
 
 export const DetailNavContainer = styled.div`
-  //box-sizing: border-box;
   width: 100%;
   height: 50px;
   background-color: white;
