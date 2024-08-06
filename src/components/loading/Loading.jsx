@@ -1,22 +1,16 @@
-import styled from 'styled-components';
-import spin from '../../assets/spin.gif';
-import MainLogoSvg from '../../assets/MainLogo.svg';
+import styled from "styled-components";
+import spin from "../../assets/spin.gif";
 
-const Loading = ({ text }) => {
+const Loading = () => {
   return (
     <LoadingBackground>
-      <MainLogo src={MainLogoSvg} />
+      <LoadingText>처방전 정보 가져오는 중</LoadingText>
       <img src={spin} />
-      <LoadingText>{text}</LoadingText>
     </LoadingBackground>
   );
 };
 
 export default Loading;
-
-const MainLogo = styled.img`
-  width: 300px;
-`;
 
 const LoadingBackground = styled.div`
   position: absolute;
@@ -33,6 +27,4 @@ const LoadingBackground = styled.div`
 `;
 const LoadingText = styled.div`
   text-align: center;
-  font-family: BitBit;
-  font-size: 25px;
 `;

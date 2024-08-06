@@ -18,7 +18,7 @@ const MainSearchResults = ({ medicines = [], searching }) => {
           prevIndex === 0 ? medicines.length - 1 : prevIndex - 1
         );
       } else if (event.key === "Enter") {
-        navigate(`/medicine/${medicines[focusedIndex].itemSeq}/instruction`);
+        navigate(`/medicine/${medicines[focusedIndex].itemSeq}`);
       }
     };
 
@@ -37,7 +37,7 @@ const MainSearchResults = ({ medicines = [], searching }) => {
   };
 
   const handleMouseClick = (index) => {
-    navigate(`/medicine/${medicines[index].itemSeq}/instruction`);
+    navigate(`/medicine/${medicines[index].itemSeq}`);
   };
 
   return (
