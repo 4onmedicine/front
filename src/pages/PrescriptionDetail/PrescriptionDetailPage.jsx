@@ -61,14 +61,6 @@ const PrescriptionDetailPage = () => {
         <DetailMain>
           <DetailContent />
         </DetailMain>
-        {/*
-        <DetailNavContainer>
-          <DetailNav />
-        </DetailNavContainer>
-        <DetailSub>
-          <Outlet />
-        </DetailSub> 
-        */}
         <DetailInfo />
       </DetailWrapper>
       <Right
