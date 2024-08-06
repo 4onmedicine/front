@@ -22,7 +22,7 @@ const PrescriptionPage = () => {
   const [medCode, setMedCode] = useState([]); // 이미지 POST 후 받아온 약 보험코드 array
   const setPresData = useSetRecoilState(presDataArrayState); // 보험코드 array POST 후 받아온 약 정보 array를 Recoil State로 저장
   const presDataArray = useRecoilValue(presDataArrayState);
-  const setDetailData = useSetRecoilState(detailDataState);
+  const [imageLoading, setImageLoading] = useState(false);
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -55,6 +55,7 @@ const PrescriptionPage = () => {
     // 이미지 업로드되자마자 서버에 보내서 약 코드 받아오기
     const fetchData = async () => {
       try {
+        setImageLoading(true);
         const res = await fetch(
           import.meta.env.VITE_BACKEND_URL + `/send-image`,
           {
@@ -68,6 +69,7 @@ const PrescriptionPage = () => {
         );
         const data = await res.json().then((result) => {
           setButtonDisabled(false);
+          setImageLoading(false);
           setMedCode(result);
           console.log(result);
           setPresData([
@@ -177,42 +179,48 @@ const PrescriptionPage = () => {
 
   return (
     <>
-      {loading ? (
-        <Loading text={'처방전 정보 받아오는 중'} />
+      {imageLoading ? (
+        <Loading text={'이미지 업로드 중'} />
       ) : (
-        <MainContainer>
-          <ContentsContainer>
-            <LogoDiv>
-              <MainLogo src={MainLogoSvg} />
-            </LogoDiv>
-            <UploadLabel
-              //onDragEnter={handleDragStart}
-              onDragOver={handleDragOver}
-              //onDragLeave={handleDragEnd}
-              onDrop={handleDrop}
-            >
-              <UploadInput
-                type='file'
-                accept='image/*'
-                onChange={handleFileUpload}
-              />
-              {uploadedInfo ? (
-                <>
-                  <PrevImage src={imageUrl} />
-                  <MiniDesc>{uploadedInfo}</MiniDesc>
-                </>
-              ) : (
-                <>
-                  <MiniTitle>클릭 혹은 파일을 이곳에 드롭하세요.</MiniTitle>
-                  <MiniDesc>이미지 최소 사이즈: 100*100px</MiniDesc>
-                </>
-              )}
-            </UploadLabel>
-            <UploadButton disabled={buttonDisabled} onClick={handleSubmit}>
-              처방전 업로드
-            </UploadButton>
-          </ContentsContainer>
-        </MainContainer>
+        <>
+          {loading ? (
+            <Loading text={'처방전 정보 받아오는 중'} />
+          ) : (
+            <MainContainer>
+              <ContentsContainer>
+                <LogoDiv>
+                  <MainLogo src={MainLogoSvg} />
+                </LogoDiv>
+                <UploadLabel
+                  //onDragEnter={handleDragStart}
+                  onDragOver={handleDragOver}
+                  //onDragLeave={handleDragEnd}
+                  onDrop={handleDrop}
+                >
+                  <UploadInput
+                    type='file'
+                    accept='image/*'
+                    onChange={handleFileUpload}
+                  />
+                  {uploadedInfo ? (
+                    <>
+                      <PrevImage src={imageUrl} />
+                      <MiniDesc>{uploadedInfo}</MiniDesc>
+                    </>
+                  ) : (
+                    <>
+                      <MiniTitle>클릭 혹은 파일을 이곳에 드롭하세요.</MiniTitle>
+                      <MiniDesc>이미지 최소 사이즈: 100*100px</MiniDesc>
+                    </>
+                  )}
+                </UploadLabel>
+                <UploadButton disabled={buttonDisabled} onClick={handleSubmit}>
+                  처방전 업로드
+                </UploadButton>
+              </ContentsContainer>
+            </MainContainer>
+          )}
+        </>
       )}
     </>
   );
