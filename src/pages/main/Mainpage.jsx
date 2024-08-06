@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import DropContainer from "../../components/main/DropContainer";
 import { MainSearch } from "../../components/main/MainSearch";
