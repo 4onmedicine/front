@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 const MainSearchResults = ({ medicines = [], searching }) => {
   const [focusedIndex, setFocusedIndex] = useState(0);
@@ -9,27 +9,27 @@ const MainSearchResults = ({ medicines = [], searching }) => {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === "ArrowDown") {
+      if (event.key === 'ArrowDown') {
         setFocusedIndex((prevIndex) =>
           prevIndex === medicines.length - 1 ? 0 : prevIndex + 1
         );
-      } else if (event.key === "ArrowUp") {
+      } else if (event.key === 'ArrowUp') {
         setFocusedIndex((prevIndex) =>
           prevIndex === 0 ? medicines.length - 1 : prevIndex - 1
         );
-      } else if (event.key === "Enter") {
+      } else if (event.key === 'Enter') {
         navigate(`/medicine/${medicines[focusedIndex].itemSeq}`);
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [focusedIndex, medicines, navigate]);
 
   useEffect(() => {
-    resultsRef.current[focusedIndex]?.scrollIntoView({ block: "nearest" });
+    resultsRef.current[focusedIndex]?.scrollIntoView({ block: 'nearest' });
   }, [focusedIndex]);
 
   const handleMouseEnter = (index) => {
@@ -83,12 +83,12 @@ const SearchResultsContainer = styled.div`
 `;
 
 const MedicineLi = styled.li.attrs((props) => ({
-  className: props.$isFocused ? "focused" : "",
+  className: props.$isFocused ? 'focused' : '',
 }))`
   list-style-type: none;
   padding: 10px;
   font-family: BitBit;
-  background-color: ${(props) => (props.$isFocused ? "#e0e0e0" : "white")};
+  background-color: ${(props) => (props.$isFocused ? '#e0e0e0' : 'white')};
   border-radius: 20px;
   cursor: pointer;
   &:hover {

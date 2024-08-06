@@ -1,9 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import NavIconSvg from "../assets/NavLogo.svg";
-import NavCursorSvg from "../assets/NavCursor.svg";
-import "../App.css";
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import NavIconSvg from '../assets/NavLogo.svg';
+import NavCursorSvg from '../assets/NavCursor.svg';
+import '../App.css';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -12,13 +11,13 @@ const Navbar = () => {
       <NavIcon
         src={NavIconSvg}
         onClick={() => {
-          navigate("/");
+          navigate('/');
         }}
       />
       <NavButtonWrapper>
         <NavButton
           onClick={() => {
-            navigate("/");
+            navigate('/');
           }}
         >
           홈
@@ -28,7 +27,7 @@ const Navbar = () => {
       <NavButtonWrapper>
         <NavButton
           onClick={() => {
-            navigate("/prescription");
+            navigate('/prescription');
           }}
         >
           처방전 검색

@@ -1,13 +1,12 @@
-import React from "react";
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SearchBox = ({ value, onChange }) => {
   return (
     <Input
-      type="text"
+      type='text'
       value={value}
       onChange={onChange}
-      placeholder="검색어를 입력하세요"
+      placeholder='검색어를 입력하세요'
     />
   );
 };

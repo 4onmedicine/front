@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import NavLogo from "../../assets/NavLogo.svg";
-import { IoClose } from "react-icons/io5";
+import { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+import NavLogo from '../../assets/NavLogo.svg';
+import { IoClose } from 'react-icons/io5';
 
 const ChatAreaComponent = ({ closeModal }) => {
-  const [texts, setTexts] = useState("");
+  const [texts, setTexts] = useState('');
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const ref = useRef();
@@ -12,32 +12,32 @@ const ChatAreaComponent = ({ closeModal }) => {
   const inputAreaRef = useRef();
 
   const handleResizeHeight = (e) => {
-    ref.current.style.height = "auto";
+    ref.current.style.height = 'auto';
     ref.current.style.height = `${Math.min(ref.current.scrollHeight, 100)}px`; // 100px는 대략 5줄 높이
     const { value } = e.target;
     setTexts(value);
   };
 
   const onSubmit = () => {
-    if (texts.trim() !== "") {
+    if (texts.trim() !== '') {
       setIsLoading(true);
-      const newMessages = [...messages, { type: "user", text: texts }];
+      const newMessages = [...messages, { type: 'user', text: texts }];
       setMessages(newMessages);
-      ref.current.style.height = "auto"; // 초기화 후 textarea 높이도 초기화
+      ref.current.style.height = 'auto'; // 초기화 후 textarea 높이도 초기화
       const fetchData = async () => {
         try {
           const res = await fetch(import.meta.env.VITE_BACKEND_URL + `/chat`, {
-            method: "POST",
+            method: 'POST',
             headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
             },
             body: JSON.stringify({ message: texts }),
           });
           const data = await res.json().then((result) => {
             setMessages([
               ...newMessages,
-              { type: "server", text: result.response },
+              { type: 'server', text: result.response },
             ]);
             setIsLoading(false);
           });
@@ -46,12 +46,12 @@ const ChatAreaComponent = ({ closeModal }) => {
         }
       };
       fetchData();
-      setTexts("");
+      setTexts('');
     }
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === 'Enter' && !e.shiftKey) {
       // 엔터키 기본 동작인 줄바꿈을 방지
       e.preventDefault();
       if (!isLoading) {
@@ -82,7 +82,7 @@ const ChatAreaComponent = ({ closeModal }) => {
             <SideDesc>Ex) 나 감기 걸렸어.</SideDesc>
           </SideArea>
           {messages.map((message, index) => (
-            <ChatMessage key={index} isUser={message.type === "user"}>
+            <ChatMessage key={index} isUser={message.type === 'user'}>
               {message.text}
             </ChatMessage>
           ))}
@@ -95,7 +95,7 @@ const ChatAreaComponent = ({ closeModal }) => {
             onKeyDown={handleKeyPress}
             value={texts}
             disabled={isLoading}
-            placeholder="GPT에게 메세지 전송"
+            placeholder='GPT에게 메세지 전송'
           />
         </InputArea>
       </ChatContainer>
@@ -181,10 +181,10 @@ const ChatMessage = styled.div`
   word-wrap: break-word;
   width: 80%;
   align-self: flex-end;
-  background-color: ${(props) => (props.isUser ? "white" : "#429d6b")};
-  align-self: ${(props) => (props.isUser ? "flex-end" : "flex-start")};
-  border: 1px solid ${(props) => (props.isUser ? "#75d3a0" : "none")};
-  color: ${(props) => (props.isUser ? "black" : "white")};
+  background-color: ${(props) => (props.isUser ? 'white' : '#429d6b')};
+  align-self: ${(props) => (props.isUser ? 'flex-end' : 'flex-start')};
+  border: 1px solid ${(props) => (props.isUser ? '#75d3a0' : 'none')};
+  color: ${(props) => (props.isUser ? 'black' : 'white')};
   padding: 15px;
   font-size: 14px;
   margin: 0 5px 0 5px;

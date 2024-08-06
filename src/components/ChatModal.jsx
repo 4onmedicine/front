@@ -1,6 +1,5 @@
-import React from "react";
-import styled from "styled-components";
-import ChatAreaComponent from "./main/ChatAreaComponent";
+import styled from 'styled-components';
+import ChatAreaComponent from './main/ChatAreaComponent';
 
 const ChatModal = ({ setIsOpen }) => {
   const closeModal = () => {

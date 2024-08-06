@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Navbar from "../Navbar";
-import { Outlet } from "react-router-dom";
-import { createPortal } from "react-dom";
-import ChatModal from "../ChatModal";
+import { useState } from 'react';
+import styled from 'styled-components';
+import Navbar from '../Navbar';
+import { Outlet } from 'react-router-dom';
+import { createPortal } from 'react-dom';
+import ChatModal from '../ChatModal';
 
 const Header = () => {
   const [open, setIsOpen] = useState(false);
   // 모달 부분 선택
-  const portalElement = document.getElementById("modal");
+  const portalElement = document.getElementById('modal');
   const onClick = () => {
     setIsOpen(!open);
   };
