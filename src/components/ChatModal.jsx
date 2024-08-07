@@ -1,11 +1,10 @@
-import styled from 'styled-components';
-import ChatAreaComponent from './main/ChatAreaComponent';
+import styled from "styled-components";
+import ChatAreaComponent from "./main/ChatAreaComponent";
 
 const ChatModal = ({ setIsOpen }) => {
   const closeModal = () => {
     setIsOpen(false);
   };
-
   return (
     <ModalContainer>
       <ChatAreaComponent
@@ -15,15 +14,14 @@ const ChatModal = ({ setIsOpen }) => {
     </ModalContainer>
   );
 };
-
 export default ChatModal;
 
 const ModalContainer = styled.div`
   position: fixed;
-  left: 0;
-  bottom: 0;
   top: 0;
+  bottom: 0;
   right: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
