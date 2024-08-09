@@ -8,7 +8,7 @@ export default ({ mode }) => {
     plugins: [react()],
     server: {
       proxy: {
-        "/api": {
+        "/": {
           target: apiUrl,
           changeOrigin: true,
         },
